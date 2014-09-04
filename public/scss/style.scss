@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+
+//Global Vars   
+$prefix: '.';
+$space: 40px; 
+$verticalBlock: 48px;
+
+$baseFontSize: 17px;
+$baseLineHeight: 1.4em; 
+$baseFontFamily: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
+$headerFontFamily: 'Pacifico';
+  
+// Colors
+$mainColor: #1f85b2; 
+$dkMainColor: darken($mainColor,20%);
+$subColor: #f9b300; 
+$dkSubColor: darken($subColor,20%);
+
+// Define fonts 
+@import "partials/font/comedicon"; 
+@import "partials/font/pacifico";
+
+// Base styles 
+@import "partials/base";
+
+ng-view + #bodyContent {
+	display: none;
+}
+
+
+//@import "typography"; 
+//@import "partials/backgroundColor";
+
+//Element partials. Order doesn't matter.
+//@import "partials/product";
+//@import "partials/table";
+//@import "partials/sidebar";
+//@import "partials/button";
+//@import "partials/tab";
+//@import "partials/box";
+//@import "partials/list";
+//@import "partials/misc";
+//@import "partials/shame";
+//@import "partials/form";
+//@import "partials/sprint";
+
+//Specific template
+@import "template";

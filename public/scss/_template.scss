@@ -1,0 +1,195 @@
+
+// Template
+
+html {
+    @include transition(500ms, 'background-image');
+    background: #000 url(../img/blank.gif) right center/cover fixed no-repeat;
+    &.bg {
+        &-home {
+            background-image: url(/media/large/home.jpg);
+        }
+        &-contact {
+            background-image: url(/media/large/contact.jpg);
+        }
+        &-bio {
+            background-image: url(/media/large/bio.jpg);
+        }
+        &-media {
+            background-image: url(/media/large/media.jpg);
+        }
+        &-calendar {
+            background-image: url(/media/large/calendar.jpg);
+        }
+    }
+}
+body {
+    margin-left: 380px;
+    padding: $space/2 0;
+}
+
+%mainBG {
+    @include transition(500ms,'background-color');
+    background-color: rgba($dkMainColor,0.9);
+}
+#nav {
+    @extend %mainBG;
+    position: fixed;
+    top: 0;
+    left: 0;
+    > #logo {
+        background: url(../img/logo.svg) center 5%/contain no-repeat;
+    }
+    #menu {
+        display: none;
+    }
+    > ul {
+        @extend .no-m, .no-p, .tc;
+        &:hover {
+            a {
+                background: none !important;
+            }
+        }
+        > li {
+            list-style-type: none;
+            > a {
+                line-height: 1em;
+                color: #fff;
+                text-transform: uppercase;
+                font-family: Helvetica;
+                display: block;
+                &.current, &:hover {
+                    background: rgba(#fff,0.4)
+                }
+                &.current:hover, &:hover {
+                    background: rgba(#fff,0.4) !important;
+                }
+            }
+        }
+    }
+}
+ng-view {
+    @extend #bodyContent;
+}
+#bodyContent {
+    @extend .grid-full, %mainBG;
+    @include calc('height',100%);
+    color: #fff;
+}
+@media (max-height: 700px) {
+    #nav {
+        > ul {
+            height: 67%;
+        }
+    }
+}
+
+@include large(){
+    %mainBG {
+        background-color: rgba($dkMainColor,0.7);
+    }
+}
+@include desktop(){
+    body {
+        width: 560px;
+    }
+    #nav {
+        width: 280px;
+        height: 100%;
+        left: $space * 2;
+        > #logo {
+            width: 90%;
+            height: 23%;
+            display: block;
+            margin: 5%;
+        }
+        > ul {
+            height: 33%;
+            position: absolute;
+            top: 33%;
+            text-align: center;
+            width: 100%;
+            > li {
+                > a {
+                    &.current, &:hover {
+                        font-weight: bold;
+                    }
+                }
+                &:nth-child(1) > a {
+                    font-size: 56px;
+                }
+                &:nth-child(2) > a {
+                    font-size: 54px;
+                }
+                &:nth-child(3) > a {
+                    font-size: 100px;
+                }
+                &:nth-child(4) > a {
+                    font-size: 32px;
+                }
+                &:nth-child(5) > a {
+                    font-size: 36px;
+                }
+            }
+        }
+    }
+}
+@include tablet(){
+    body {
+        padding: 48px 0 0 !important;
+        margin-left: 0;
+        width: 100%;
+    }
+    #nav {
+        float: left;
+        width: 210px;
+        margin-top: 0 !important;
+        width: 100% !important;
+        > #logo {
+            width: calc(25% - 10px) !important;
+            float: left;
+            margin: 5px !important;
+            height: 38px !important;
+        }
+        > ul {
+            float: left;
+            text-align: center;
+            > li {
+                float: left;
+                width: auto;
+                > a {
+                    padding: 0 0.5em;
+                    font-size: 20px !important;
+                    line-height: 48px;
+                }
+
+            }
+        }
+    }
+}
+@include mobile(){
+    #nav {
+        #menu {
+            display: block;
+            line-height: 48px;
+            padding-left: 0.5em;
+            font-size: 24px;
+            float: right;
+            &:hover {
+                background: rgba(#fff,0.4) !important;
+            }
+        }
+        > ul {
+            display: none;
+        }
+        > #menu.open + ul {
+            display: block;
+            width: 100%;
+            > li {
+                display: block;
+                width: 100%;
+                border-top: solid 1px lighten($dkMainColor,10%);
+                border-bottom: solid 1px darken($dkMainColor,20%);
+            }
+        }
+    }
+}

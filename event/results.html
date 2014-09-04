@@ -1,0 +1,35 @@
+<@>ngHead@>
+<@>header@>
+
+<div id="events" class="p">
+    <@#events@>
+    <h1>Upcoming shows!</h1>
+    <span itemscope itemtype="http://www.schema.org/Event">
+        <a href="/event/<@id@>/<@slug@>" class="event" itemprop="url">
+            <img src="/media/entertainer/steve-soelberg/thumb.jpg" itemprop="image">
+            <span class="header" itemprop="name"><@name@></span>
+            <span class="location" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                <span itemprop="name">Wiseguys Ogden</span>
+                <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                    <meta itemprop="streetAddress" content="269 Historic 25th Street">
+                    <meta itemprop="addressLocality" content="Ogden"><meta itemprop="addressRegion" content="UT">
+                </span>
+            </span>
+            <@#showtimes@>
+            <span class="date">
+                <time itemprop="startDate" datetime="2014-02-21T20:00:00-07:00"></time>
+                <meta itemprop="endDate" content="2014-02-22T20:00:00-07:00">
+            </span>
+            <@/showtimes@>
+            <span itemprop="description" class="description"><@description@></span>
+        </a>
+    </span>
+    <@/events@>
+    <@^events@>
+    <h1>No upcoming shows</h1>
+    <a href="/contact" class="btn main">Book Steve Today!</a>
+    <@/events@>
+
+</div>
+
+<@>footer@>

@@ -1,0 +1,66 @@
+{{>head}}
+{{>header}}
+
+<link href="/css/details.css" rel="stylesheet" />
+
+<div itemscope itemtype="http://schema.org/Event">
+    <div id="sideBar" class="grid-6">
+		<div class="p">
+		    <img src="/media/entertainer/{{ event.slug }}/profile.jpg" itemprop="image" class="grid-full">
+		    <h3>{{event.type}}
+			<span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+			    $<span itemprop="price">{{ event.price }}</span><meta itemprop="priceCurrency" value="USD" />
+			</span>
+		    </h3>
+			<table style="text-align: left;" id="sideBarDates">
+			    {{#showtimes}}
+			    <!-- Event {{id}} -->
+			    <tr>
+			    	<td>{{date}}</td>
+			    	<td><button>{{time}}</button></td>
+			    </tr>
+			    {{/showtimes}}
+			</table>
+			<input type="hidden" name="event" value="{{event.id}}">
+			<a href="{{link}}" class="btn orange grid-full">Buy Tickets</a>
+		    </form>
+		    
+		    <div id="address" itemprop="location" itemtype="http://schema.org/Place">
+			
+			<span itemprop="location" itemscope itemtype="http://schema.org/PostalAddress">
+			<a href="tel:801.532.5233" itemprop="telephone">{{ event.venue.tel }}</a><br />
+			<span itemprop="name">{{ event.venue.name }}</span><br />
+			<span itemprop="streetAddress">{{ event.venue.address.street }}</span><br />
+			<span itemprop="addressLocality">{{ event.venue.address.city }}</span>,
+			<span itemprop="addressRegion">{{ event.venue.address.state }}</span>
+			    
+			</span>
+			
+		    </div>
+	
+		</div>
+    </div>
+    <style>
+    	.dateRange:before {
+    		content: ", ";
+    	}
+    	.dateRange:first-child:before {
+    		content: none;
+    	}
+    </style>
+    <div id="mainContent" class="grid-14">
+		<div class="p">
+		    <h1 class="header" itemprop="name">{{ event.name }}</h1>
+		    <h2 class="date">{{#events}}<span class="dateRange">{{ range }}</span>{{/events}}</h2>
+		    <h4 style="font-variant: small-caps; margin: 5px 0;">{{ event.credits }}</h4>
+		    
+		    <mark class="location {{event.venue.slug}}">{{event.venue.name}} <a href="/venue/{{event.venue.slug}}" style="color: #000;">&#10152; Get Directions</a></mark>
+
+		    <div id="description" class="fl" itemprop="description" style="white-space: pre-line;">{{{ event.description }}}</div>
+		    <div id="showType" itemscope itemtype="http://schema.org/Rating"> &bull; <span itemprop="ratingValue">{{ event.rating }}</span> Rating  &bull; </div>
+		</div>
+    </div>
+</div>
+
+{{>footer}}
+{{>foot}}

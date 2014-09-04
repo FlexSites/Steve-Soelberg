@@ -1,0 +1,16 @@
+{
+	"host": "stevesoelberg.com",
+	"title": "Comedian Steve Soelberg",
+	"type": "comedian",
+	"entertainerId": "53d1db2b562cdbef37fe0a48",
+	"styles": ["http://fonts.googleapis.com/css?family=Pacifico"],
+	"scripts": ["//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js","/ng/angular-route.js","/ng/global.js"],
+	"aliases": ["steve.omniorders.com"],
+	"smtpTransport": {
+	    "service": "Gmail",
+	    "auth": {
+	        "user": "stevesoelberg@gmail.com",
+	        "pass": "dubrbdulbvqwqicq"
+	    }
+	}
+}

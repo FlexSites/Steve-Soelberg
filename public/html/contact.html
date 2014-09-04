@@ -1,0 +1,75 @@
+<style>
+    form {
+        width: 100%;
+    }
+    label {
+        width: calc(50% - 20px);
+        display: block;
+        float: left;
+        margin: 10px;
+        font-weight: bold;
+    }
+    label > input, label > textarea {
+        width: 100%;
+        padding: 8px;
+        font-weight: bold;
+    }
+    label.full {
+        width: calc(100% - 20px);
+    }
+    #bodyContent > .p {
+        padding: 5%;
+    }
+    button {
+        margin: 10px;
+        border: 0;
+        background-color: #f90;
+        color: #fff;
+        font-size: 1.07142857em;
+        line-height: 2.28571429em;
+        position: relative;
+        display: inline-block;
+        padding: 0 0.57142857em;
+        text-decoration: none;
+        cursor: pointer;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        outline: none;
+        -webkit-font-smoothing: antialiased;
+        border-bottom: none !important;
+    }
+</style>
+    <form class="mainBG p mb fl">
+        <h1>Book Me!</h1>
+        <label for="name" class="full">
+            Name:
+            <input type="text" name="name">
+        </label>
+        <label for="phone">
+            Phone:
+            <input type="tel" name="phpne">
+        </label>
+        <label for="email">
+            Email:
+            <input type="text" name="email">
+        </label>
+        <label for="message" class="full">
+            Message:
+            <textarea name="message"></textarea>
+        </label>
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <form class="mainBG p fl">
+        <h1>Join My Email List!</h1>
+        <label for="name" class="full">
+            Name:
+            <input type="text" name="name">
+        </label>
+        <label for="email" class="full">
+            Email:
+            <input type="text" name="email">
+        </label>
+        <button type="submit">Submit</button>
+    </form>
