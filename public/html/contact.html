@@ -39,37 +39,42 @@
         border-bottom: none !important;
     }
 </style>
-    <form class="mainBG p mb fl">
+    <form class="mainBG p mb fl" ng-controller="ContactForm as form" ng-submit="saveData()">
         <h1>Book Me!</h1>
-        <label for="name" class="full">
-            Name:
-            <input type="text" name="name">
-        </label>
-        <label for="phone">
-            Phone:
-            <input type="tel" name="phpne">
-        </label>
-        <label for="email">
-            Email:
-            <input type="text" name="email">
-        </label>
-        <label for="message" class="full">
-            Message:
-            <textarea name="message"></textarea>
-        </label>
-        <button type="submit">Submit</button>
+        <div ng-show="!form.submitted">
+            <label for="name" class="full">
+                Name:
+                <input type="text" ng-model="contact.name">
+            </label>
+            <label for="phone">
+                Phone:
+                <input type="tel" ng-model="contact.phone">
+            </label>
+            <label for="email">
+                Email:
+                <input type="text" ng-model="contact.email">
+            </label>
+            <label for="message" class="full">
+                Message:
+                <textarea ng-model="contact.message"></textarea>
+            </label>
+            <button type="submit">Submit</button>
+        </div>
+        <div ng-show="form.submitted">
+            <div class="text box">Message: {{form.message}}</div>
+        </div>
     </form>
 
 
-    <form class="mainBG p fl">
+    <form class="mainBG p fl" ng-controller="EmailList" ng-submit="saveData()">
         <h1>Join My Email List!</h1>
         <label for="name" class="full">
             Name:
-            <input type="text" name="name">
+            <input type="text" name="name" ng-model="subscriber.name">
         </label>
         <label for="email" class="full">
             Email:
-            <input type="text" name="email">
+            <input type="text" name="email" ng-model="subscriber.email">
         </label>
         <button type="submit">Submit</button>
     </form>
