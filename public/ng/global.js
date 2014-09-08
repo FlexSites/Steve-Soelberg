@@ -36,11 +36,14 @@ var app = angular.module('comedian',['ngRoute'])
             zip: '',
             name: ''
         };
+        var that = this;
+        this.submitted = false;
         $scope.saveData = function() {
             console.log('Hey',this.subscriber);
             $http.post('/mail', $scope.subscriber)
                 .success(function(data) {
-                    console.log('return',data);
+                    that.submitted = true;
+                    that.message = data.message;
                 });
         };
     }])
