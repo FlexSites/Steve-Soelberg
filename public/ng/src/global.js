@@ -1,8 +1,8 @@
-var config = {"host":"stevesoelberg.com","title":"Steve Soelberg: Stand-up Comedian & the voice of Ragnar","description":"Steve Soelberg: Stand-up Comedian, & the voice of Ragnar","type":"comedian","entertainerId":"53d1db2b562cdbef37fe0a48","styles":["http://fonts.googleapis.com/css?family=Pacifico"],"scripts":["//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js","/ng/angular-route.js","/ng/global.js"],"aliases":["steve.omniorders.com"],"analytics":"UA-42233857-2","smtpTransport":{"service":"Gmail","auth":{"user":"stevesoelberg@gmail.com","pass":"dubrbdulbvqwqicq"}}};
+var config = @@config;
 
 var app = angular.module('comedian',['ngRoute'])
     .config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider) {
-        angular.forEach([{"url":"/","templateUrl":"/html/home.html","bgClass":"bg-home","title":"Comedian Steve Soelberg"},{"url":"/bio","templateUrl":"/html/bio.html","bgClass":"bg-bio","title":"About Steve"},{"url":"/contact","templateUrl":"/html/contact.html","bgClass":"bg-contact","title":"Book Steve"},{"url":"/videos","templateUrl":"/html/videos.html","bgClass":"bg-media","title":"Videos of Steve Soelberg"},{"url":"/calendar","templateUrl":"/html/calendar.html","bgClass":"bg-calendar","title":"See an upcoming performance of Steve"}],function(route){
+        angular.forEach(@@routes,function(route){
             var url = route.url;
             delete route.url;
             $routeProvider.when(url,route);
