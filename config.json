@@ -1,6 +1,7 @@
 {
 	"host": "stevesoelberg.com",
-	"title": "Comedian Steve Soelberg",
+	"title": "Steve Soelberg: Stand-up Comedian & the voice of Ragnar",
+	"description": "Steve Soelberg is well-known as the voice of Ragnar. He's also an incredibly talented stand-up comedian.",
 	"type": "comedian",
 	"entertainerId": "53d1db2b562cdbef37fe0a48",
 	"styles": ["http://fonts.googleapis.com/css?family=Pacifico"],
