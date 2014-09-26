@@ -10,11 +10,6 @@ var app = angular.module('comedian',['ngRoute'])
         $locationProvider.html5Mode(true);
     }])
     .controller('EmailList',['$scope','$http', function($scope,$http) {
-        $http.get('http://local.comedian.io/events').success(function(){
-            console.log('Success',arguments);
-        }).error(function(){
-            console.log('Failure',arguments);
-        });
         $scope.subscriber = {
             email: '',
             zip: '',
@@ -160,4 +155,4 @@ if(analytics){
 }
 else {
     window.ga = noop;
-}
+}.

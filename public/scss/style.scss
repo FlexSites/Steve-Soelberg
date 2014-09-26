@@ -20,13 +20,9 @@ $dkSubColor: darken($subColor,20%);
 // Define fonts 
 @import "partials/font/comedicon"; 
 @import "partials/font/pacifico";
-
+ 
 // Base styles 
 @import "partials/base";
-
-ng-view + #bodyContent {
-	display: none;
-}
 
 
 //@import "typography"; 

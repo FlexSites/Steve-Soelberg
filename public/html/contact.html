@@ -14,6 +14,9 @@
         padding: 8px;
         font-weight: bold;
     }
+    :not(:focus).ng-dirty.ng-invalid {
+        border-color: #f00;
+    }
     label.full {
         width: calc(100% - 20px);
     }
@@ -39,20 +42,20 @@
         border-bottom: none !important;
     }
 </style>
-    <form class="mainBG p mb fl" ng-controller="ContactForm as form" ng-submit="saveData()">
+    <form name="contactForm" class="mainBG p mb fl" ng-controller="ContactForm as form" ng-submit="contactForm.$valid && saveData()" novalidate>
         <h1>Book Me!</h1>
         <div ng-show="!form.submitted">
             <label for="name" class="full">
                 Name:
-                <input type="text" ng-model="contact.name">
+                <input type="text" ng-model="contact.name" required>
             </label>
             <label for="phone">
                 Phone:
-                <input type="tel" ng-model="contact.phone">
+                <input type="tel" ng-model="contact.phone" required>
             </label>
             <label for="email">
                 Email:
-                <input type="text" ng-model="contact.email">
+                <input type="email" ng-model="contact.email" required>
             </label>
             <label for="message" class="full">
                 Message:
@@ -66,16 +69,16 @@
     </form>
 
 
-    <form class="mainBG p fl" ng-controller="EmailList as form" ng-submit="saveData()">
+    <form name="subscribeForm" class="mainBG p fl" ng-controller="EmailList as form" ng-submit="subscribeForm.$valid && saveData()">
         <h1>Join My Email List!</h1>
             <div ng-show="!form.submitted">
             <label for="name" class="full">
                 Name:
-                <input type="text" name="name" ng-model="subscriber.name">
+                <input type="text" name="name" ng-model="subscriber.name" required>
             </label>
             <label for="email" class="full">
                 Email:
-                <input type="text" name="email" ng-model="subscriber.email">
+                <input type="email" name="email" ng-model="subscriber.email" required>
             </label>
             <button type="submit">Submit</button>
         </div>

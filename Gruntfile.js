@@ -1,81 +1,227 @@
-var ViewService = require('./services/ViewService.js');
-module.exports = function (grunt) {
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),  
-         // Remove unused CSS across multiple files, compressing the final output
-         uncss: {
-          dist: {
-            options: {
-              // ignore       : [/expanded/,/js/,/wp-/,/align/,/admin-bar/],
-              stylesheets  : ['http://rcwilley.com/styles/style.css'],
-              // ignoreSheets : [/fonts.googleapis/],
-              timeout: 5000,
-              urls:['http://rcwilley.com','http://www.rcwilley.com/Furniture/Dining-Room/Dining-Sets/3324915/-5-Piece-Counter-Height-Dining-Set-View.jsp','http://rcwilley.com/Furniture/Search.jsp'], //Overwritten in load_sitemap_and_uncss task
-          },
-          files: {
-              'css/app.clean.css': ['**/*.php']
-          }
-      }
-  },
-  sass: {
-    dev: {
-        options: {
-            style: 'expanded',
-            precision: 8
-        },
-        files: [{
-            expand: true,
-            src: ['/www/views/steve/public/scss/*.scss'],
-            rename: function(dest, src) {
-               console.log(src.replace(/^(.*?)\/scss\/([^.]*).*/gi,'$1/css/$2.css'));
-               return src.replace(/^(.*?)\/scss\/([^.]*).*/gi,'$1/css/$2.css');
-           }
-       }]
-   },
-   dist: {
-    options: {
-        style: 'compressed',
-        precision: 8
-    },
-    files: [{
-        expand: true,
-        src: ['/www/views/steve/public/scss/*.scss'],
-        rename: function(dest, src) {
-           return src.replace(/^(.*?)\/scss\/([^.]*).*/gi,'$1/css/min/$2.css');
-       }
-   }]
-}
-},
-open: {
-    reload : {
-      path: 'http://wiseguyscomedy:3000/admin/reload',
-      app: 'Google Chrome'
-  }
-},        
-closurecompiler: {
+module.exports = function(grunt) {
 
-},
-watch: {
-            // css: {
-            //     files: '**/*.scss',
-            //     tasks: ['sass']
-            // },
-            views: {
-                files: '**/*.html',
-                tasks: ['open:reload']
+    // 1. All configuration goes here 
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        hogan_render: {
+            dev: {
+
+            },
+            prod: {
+                files: {
+                    'public/ng/global2.js': 'public/ng/global.js'
+                }
+            }
+        },
+        sass: {
+            dev: {
+                options: {
+                    style: 'expanded'
+                },
+                files: {
+                    'public/css/style.css': ['public/scss/style.scss']
+                }
+            },
+            prod: {
+                options: {
+                    style: 'compressed'
+                },
+                files: {
+                    'public/css/min/style.css': ['public/scss/style.scss']
+                }
+            }
+        },
+        concat: {
+            prod: {
+                src: [
+                    '../default/partials/ngHead.html',
+                    'index.html',
+                    '../default/partials/foot.html'
+                ],
+                dest: 'public/index.html',
+            }
+        },
+        // Uglify for development JS combination
+        uglify: {
+            global: {
+                options: {
+                    mangle: false,
+                    compress: false,
+                    beautify: true
+                },
+
+                files: {
+                    'public/ng/min/global.js': [
+                        '../default/public/ng/lib/angular.min.js',
+                        '../default/public/ng/lib/angular-route.min.js',
+                        'public/ng/global.js'
+                    ]
+                }
+
+            }
+        },
+        // Closure compiler for production JS minification
+        'closure-compiler': {
+            global: {
+                closurePath: '/comedian/app',
+                js: [
+                    '../default/public/ng/lib/angular.min.js',
+                    '../default/public/ng/lib/angular-route.min.js',
+                    'public/ng/global.js'
+                ],
+                jsOutputFile: 'public/ng/min/global.js',
+                maxBuffer: 500,
+                options: {
+                    // compilation_level: 'ADVANCED_OPTIMIZATIONS',
+                    // language_in: 'ECMASCRIPT5_STRICT'
+                }
+            }
+        },
+
+        watch: {
+            dev: {
+                tasks: ['uglify', 'sass:dev', 'concat:prod', 'hogan'],
+                files: [
+                    'public/scss/style.scss',
+                    'public/scss/partials/*.scss',
+                    'public/ng/*.js',
+                    'public/js/*.js',
+                    'config.json',
+                    'routes.json'
+                ],
+                options: {
+                    atBegin: true,
+                    spawn: false,
+                    debounceDelay: 250,
+                    livereload: 35731
+                }
             }
         }
     });
-grunt.loadNpmTasks('grunt-contrib-sass');
-grunt.loadNpmTasks('grunt-contrib-watch');
-grunt.loadNpmTasks('grunt-open');
-grunt.loadNpmTasks('grunt-uncss');
-grunt.registerTask('default', ['watch']);
-grunt.registerTask('closurecompiler', 'Compiles site javascript with Google Closure Compiler', function(arg1, arg2) {
-  var googleapi = require('./services/GoogleService.js');
-  googleapi.closurecompiler.compile({src: 'http://sethtippetts.com/js/critical.js', dest: '/www/public/js/min/critical.js'});
-});
+
+    // 3. Where we tell Grunt we plan to use this plug-in.
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-include-replace');
+    grunt.loadNpmTasks('grunt-mustache-html');
+    grunt.loadNpmTasks('grunt-closure-compiler');
+
+      grunt.registerMultiTask('hogan_render', 'Uses Hogan.js to render static HTML with variables', function() {
+
+        // Merge task-specific and/or target-specific options with these defaults.
+        var options = this.options({
+          punctuation: '.',
+          separator: ', '
+        });
+
+        // Iterate over all specified file groups.
+        this.files.forEach(function(f) {
+          // Concat specified files.
+          var src = f.src.filter(function(filepath) {
+            // Warn on and remove invalid source files (if nonull was set).
+            if (!grunt.file.exists(filepath)) {
+              grunt.log.warn('Source file "' + filepath + '" not found.');
+              return false;
+            } else {
+              return true;
+            }
+          }).map(function(filepath) {
+            // Read file source.
+            return grunt.file.read(filepath);
+          }).join(grunt.util.normalizelf(options.separator));
+
+          // Handle options.
+          src += options.punctuation;
+
+          // Write the destination file.
+          grunt.file.write(f.dest, src);
+
+          // Print a success message.
+          grunt.log.writeln('File "' + f.dest + '" created.');
+        });
+      });
+
+
+
+
+    //grunt.registerTask('default',['watch:actionItems']);
+
+
+    var env = grunt.option('env') || '';
+
+    grunt.registerTask('build', ['closure-compiler','concat:prod', 'hogan']);
+
+    //For Global Angular
+    grunt.registerTask('default', null, function() {
+        if (env === 'prod') {
+            //grunt.task.run('uglify:globalNgProd');
+        } else {
+            grunt.task.run('watch:actionItems');
+        }
+    });
+
+    // For compiling hogan.js/mustache 
+    grunt.registerTask('hogan', 'Compiles mustache syntax templates', function() {
+        var hogan = require('hogan.js');
+        var clc = require('cli-color');
+        var fs = require('fs');
+        var async = require('async');
+
+        var done = this.async();
+        var filename = 'public/index.html';
+        var configFilename = 'config.json';
+
+        async.parallel([
+
+                function(callback) {
+                    fs.readFile(filename, 'utf8', function(err, data) {
+                        callback(err, hogan.compile(data, {
+                            delimiters: '<@ @>'
+                        }));
+                    });
+                },
+                function(callback) {
+                    fs.readFile(configFilename, 'utf8', function(err, data) {
+                        try {
+                            var config = JSON.parse(data);
+                            callback(err, config);
+                        } catch (ex) {
+                            callback(ex);
+                        }
+                    });
+                }
+            ],
+            function(err, results) {
+                if (err) {
+                    var error = new Error('Parse');
+                    console.log(error.stack, err);
+                    throw error;
+                }
+                fs.writeFile(filename, results[0].render(results[1]), function(err, data) {
+                    if (err) {
+                        throw new Error('Failed to save ' + filename)
+                    } else {
+                        done();
+                    }
+                });
+            });
+
+
+
+    });
+    grunt.registerTask('tests', null, function() {
+        grunt.task.run('watch:tests');
+    });
+
+
+
+    //grunt.task.run('svgmin: framework');
+
+    //grunt.task.run('uglify: framework');
+
+    // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
+    /* grunt.registerTask('framework', ['watch:framework']);*/
 
 };
-
-
