@@ -34,9 +34,9 @@ module.exports = function(grunt) {
         concat: {
             prod: {
                 src: [
-                    '../default/partials/ngHead.html',
+                    '../global/partials/ngHead.html',
                     'index.html',
-                    '../default/partials/foot.html'
+                    '../global/partials/foot.html'
                 ],
                 dest: 'public/index.html',
             }
@@ -52,8 +52,8 @@ module.exports = function(grunt) {
 
                 files: {
                     'public/ng/min/global.js': [
-                        '../default/public/ng/lib/angular.min.js',
-                        '../default/public/ng/lib/angular-route.min.js',
+                        '../global/public/ng/lib/angular.min.js',
+                        '../global/public/ng/lib/angular-route.min.js',
                         'public/ng/global.js'
                     ]
                 }
@@ -65,8 +65,8 @@ module.exports = function(grunt) {
             global: {
                 closurePath: '/comedian/app',
                 js: [
-                    '../default/public/ng/lib/angular.min.js',
-                    '../default/public/ng/lib/angular-route.min.js',
+                    '../global/public/ng/lib/angular.min.js',
+                    '../global/public/ng/lib/angular-route.min.js',
                     'public/ng/global.js'
                 ],
                 jsOutputFile: 'public/ng/min/global.js',
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
 
     var env = grunt.option('env') || '';
 
-    grunt.registerTask('build', ['closure-compiler','concat:prod', 'hogan']);
+    grunt.registerTask('build', ['concat:prod', 'hogan']);
 
     //For Global Angular
     grunt.registerTask('default', null, function() {
