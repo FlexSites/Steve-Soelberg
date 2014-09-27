@@ -1,7 +1,7 @@
 <nav id="nav">
     <a href="/" id="logo"></a>
-    <a href="#menu" id="menu" class="icon-menu"></a>
-    <ul>
+    <a ng-click="menuIsShowing = !menuIsShowing" id="menu" class="icon-menu"></a>
+    <ul ng-class="{'open': menuIsShowing}" ng-click="menuIsShowing = false">
         <li><a href="/">Home</a></li>
         <li><a href="/videos">Media</a></li>
         <li><a href="/bio">Bio</a></li>

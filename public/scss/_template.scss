@@ -167,6 +167,9 @@ ng-view {
     }
 }
 @include mobile(){
+    html {
+        background-image: url(/media/tablet/home.jpg) !important;
+    }
     #nav {
         #menu {
             display: block;
@@ -180,15 +183,15 @@ ng-view {
         }
         > ul {
             display: none;
-        }
-        > #menu.open + ul {
-            display: block;
-            width: 100%;
-            > li {
+            &.open {
                 display: block;
                 width: 100%;
-                border-top: solid 1px lighten($dkMainColor,10%);
-                border-bottom: solid 1px darken($dkMainColor,20%);
+                > li {
+                    display: block;
+                    width: 100%;
+                    border-top: solid 1px lighten($dkMainColor,10%);
+                    border-bottom: solid 1px darken($dkMainColor,20%);
+                }
             }
         }
     }

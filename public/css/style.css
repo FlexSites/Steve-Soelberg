@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /** Comedicon ICON FONT **/
 @font-face {
   font-family: "Comedicon";
@@ -21,239 +22,239 @@
 }
 
 .icon-left-circle:before {
-  content: "\\e000" !important;
+  content: "" !important;
 }
 
 .icon-right-circle:before {
-  content: "\\e001" !important;
+  content: "" !important;
 }
 
 .icon-prev:before {
-  content: "\\e002" !important;
+  content: "" !important;
 }
 
 .icon-next:before {
-  content: "\\e003" !important;
+  content: "" !important;
 }
 
 .icon-left:before {
-  content: "\\e004" !important;
+  content: "" !important;
 }
 
 .icon-right:before {
-  content: "\\e005" !important;
+  content: "" !important;
 }
 
 .icon-up:before {
-  content: "\\e006" !important;
+  content: "" !important;
 }
 
 .icon-down:before {
-  content: "\\e007" !important;
+  content: "" !important;
 }
 
 .icon-warning:before {
-  content: "\\e008" !important;
+  content: "" !important;
 }
 
 .icon-plus-circle:before {
-  content: "\\e009" !important;
+  content: "" !important;
 }
 
 .icon-minus-circle:before {
-  content: "\\e00a" !important;
+  content: "" !important;
 }
 
 .icon-menu:before {
-  content: "\\e00b" !important;
+  content: "" !important;
 }
 
 .icon-search:before {
-  content: "\\e00c" !important;
+  content: "" !important;
 }
 
 .icon-star:before {
-  content: "\\e00d" !important;
+  content: "" !important;
 }
 
 .icon-star-half:before {
-  content: "\\e00e" !important;
+  content: "" !important;
 }
 
 .icon-star-empty:before {
-  content: "\\e00f" !important;
+  content: "" !important;
 }
 
 .icon-contact:before {
-  content: "\\e010" !important;
+  content: "" !important;
 }
 
 .icon-blog:before {
-  content: "\\e011" !important;
+  content: "" !important;
 }
 
 .icon-directions:before {
-  content: "\\e013" !important;
+  content: "" !important;
 }
 
 .icon-lock:before {
-  content: "\\e015" !important;
+  content: "" !important;
 }
 
 .icon-mail:before {
-  content: "\\e018" !important;
+  content: "" !important;
 }
 
 .icon-back:before {
-  content: "\\e037" !important;
+  content: "" !important;
 }
 
 .icon-forward:before {
-  content: "\\e038" !important;
+  content: "" !important;
 }
 
 .icon-first:before {
-  content: "\\e03c" !important;
+  content: "" !important;
 }
 
 .icon-last:before {
-  content: "\\e03d" !important;
+  content: "" !important;
 }
 
 .icon-heart:before {
-  content: "\\e03e" !important;
+  content: "" !important;
 }
 
 .icon-cart:before {
-  content: "\\e03f" !important;
+  content: "" !important;
 }
 
 .icon-print:before {
-  content: "\\e040" !important;
+  content: "" !important;
 }
 
 .icon-settings:before {
-  content: "\\e041" !important;
+  content: "" !important;
 }
 
 .icon-card:before {
-  content: "\\e042" !important;
+  content: "" !important;
 }
 
 .icon-checkmark-circle:before {
-  content: "\\e043" !important;
+  content: "" !important;
 }
 
 .icon-close-circle:before {
-  content: "\\e044" !important;
+  content: "" !important;
 }
 
 .icon-checkmark:before {
-  content: "\\e045" !important;
+  content: "" !important;
 }
 
 .icon-close:before {
-  content: "\\e046" !important;
+  content: "" !important;
 }
 
 .icon-info:before {
-  content: "\\e047" !important;
+  content: "" !important;
 }
 
 .icon-error:before {
-  content: "\\e048" !important;
+  content: "" !important;
 }
 
 .icon-list:before {
-  content: "\\e049" !important;
+  content: "" !important;
 }
 
 .icon-grid:before {
-  content: "\\e04a" !important;
+  content: "" !important;
 }
 
 .icon-history:before {
-  content: "\\e04b" !important;
+  content: "" !important;
 }
 
 .icon-home:before {
-  content: "\\e04c" !important;
+  content: "" !important;
 }
 
 .icon-facebook:before {
-  content: "\\e04f" !important;
+  content: "" !important;
 }
 
 .icon-twitter:before {
-  content: "\\e050" !important;
+  content: "" !important;
 }
 
 .icon-google-plus:before {
-  content: "\\e051" !important;
+  content: "" !important;
 }
 
 .icon-pinterest:before {
-  content: "\\e052" !important;
+  content: "" !important;
 }
 
 .icon-email:before {
-  content: "\\e053" !important;
+  content: "" !important;
 }
 
 .icon-youtube:before {
-  content: "\\e054" !important;
+  content: "" !important;
 }
 
 .icon-user:before {
-  content: "\\e056" !important;
+  content: "" !important;
 }
 
 .icon-camera:before {
-  content: "\\e05c" !important;
+  content: "" !important;
 }
 
 .icon-ticket:before {
-  content: "\\e012" !important;
+  content: "" !important;
 }
 
 .icon-microphone:before {
-  content: "\\e014" !important;
+  content: "" !important;
 }
 
 .icon-ban:before {
-  content: "\\e016" !important;
+  content: "" !important;
 }
 
 .icon-download:before {
-  content: "\\e01a" !important;
+  content: "" !important;
 }
 
 .icon-spinner:before {
-  content: "\\e01b" !important;
+  content: "" !important;
 }
 
 .icon-instagram:before {
-  content: "\\e020" !important;
+  content: "" !important;
 }
 
 .icon-link:before {
-  content: "\\e021" !important;
+  content: "" !important;
 }
 
 .icon-popout:before {
-  content: "\\e600" !important;
+  content: "" !important;
 }
 
 .icon-earth:before {
-  content: "\\e601" !important;
+  content: "" !important;
 }
 
 .icon-music:before {
-  content: "\\f001" !important;
+  content: "" !important;
 }
 
 .icon-calendar:before {
-  content: "\\f073" !important;
+  content: "" !important;
 }
 
 /** Pacifico ICON FONT **/
@@ -1623,6 +1624,10 @@ body {
   }
 }
 @media (max-width: 767px) {
+  html {
+    background-image: url(/media/tablet/home.jpg) !important;
+  }
+
   #nav #menu {
     display: block;
     line-height: 48px;
@@ -1636,11 +1641,11 @@ body {
   #nav > ul {
     display: none;
   }
-  #nav > #menu.open + ul {
+  #nav > ul.open {
     display: block;
     width: 100%;
   }
-  #nav > #menu.open + ul > li {
+  #nav > ul.open > li {
     display: block;
     width: 100%;
     border-top: solid 1px #176587;
