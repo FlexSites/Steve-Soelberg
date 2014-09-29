@@ -21,7 +21,8 @@
         "url": "/videos",
         "templateUrl": "/html/videos.html",
         "bgClass": "bg-media",
-        "title": "Videos of Steve Soelberg"
+        "title": "Videos of Steve Soelberg",
+        "controller": "MediaController"
     },
     {
         "url": "/calendar",
