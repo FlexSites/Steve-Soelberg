@@ -5502,7 +5502,8 @@ var app = angular.module("comedian", [ "ngRoute" ]).config([ "$routeProvider", "
         url: "/videos",
         templateUrl: "/html/videos.html",
         bgClass: "bg-media",
-        title: "Videos of Steve Soelberg"
+        title: "Videos of Steve Soelberg",
+        controller: "MediaController"
     }, {
         url: "/calendar",
         templateUrl: "/html/calendar.html",
@@ -5514,6 +5515,14 @@ var app = angular.module("comedian", [ "ngRoute" ]).config([ "$routeProvider", "
         $routeProvider.when(url, route);
     });
     $locationProvider.html5Mode(true);
+} ]).controller("MediaController", [ "$scope", "$http", function($scope, $http) {
+    console.log("Media Controller");
+    $http.get("http://api.comedian.io/media").success(function(data) {
+        console.log("success", arguments);
+        $scope.items = data;
+    }).error(function() {
+        console.log("error", arguments);
+    });
 } ]).controller("EmailList", [ "$scope", "$http", function($scope, $http) {
     $http.get("http://local.comedian.io/events").success(function() {
         console.log("Success", arguments);
@@ -5549,9 +5558,10 @@ var app = angular.module("comedian", [ "ngRoute" ]).config([ "$routeProvider", "
             that.message = data.message;
         });
     };
-} ]).run([ "$location", "$rootScope", function($location, $rootScope) {
+} ]).run([ "$location", "$rootScope", "$http", function($location, $rootScope, $http) {
     $rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
         if (current) {
+            console.log(current);
             document.title = current.$$route.title;
             $rootScope.bgClass = current.$$route.bgClass;
         }
