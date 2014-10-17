@@ -5523,7 +5523,7 @@ var app = angular.module("comedian", [ "ngRoute" ]).config([ "$routeProvider", "
         console.log("error", arguments);
     });
 } ]).controller("EmailList", [ "$scope", "$http", function($scope, $http) {
-    $http.get("http://local.comedian.io/events").success(function() {
+    $http.get("http://api.comedian.io/events").success(function() {
         console.log("Success", arguments);
     }).error(function() {
         console.log("Failure", arguments);
@@ -5537,7 +5537,7 @@ var app = angular.module("comedian", [ "ngRoute" ]).config([ "$routeProvider", "
     this.submitted = false;
     $scope.saveData = function() {
         console.log("Hey", this.subscriber);
-        $http.post("/mail", $scope.subscriber).success(function(data) {
+        $http.post("http://api.comedian.io/mail", $scope.subscriber).success(function(data) {
             that.submitted = true;
             that.message = data.message;
         });
@@ -5552,7 +5552,7 @@ var app = angular.module("comedian", [ "ngRoute" ]).config([ "$routeProvider", "
     this.submitted = false;
     var that = this;
     $scope.saveData = function() {
-        $http.post("/mail/send", $scope.contact).success(function(data) {
+        $http.post("http://api.comedian.io/mail/send", $scope.contact).success(function(data) {
             that.submitted = true;
             that.message = data.message;
         });
