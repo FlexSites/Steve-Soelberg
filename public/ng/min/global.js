@@ -5476,8 +5476,7 @@ var config = {
     smtpTransport: {
         service: "Gmail",
         auth: {
-            user: "stevesoelberg@gmail.com",
-            pass: "dubrbdulbvqwqicq"
+            user: "stevesoelberg@gmail.com"
         }
     }
 };
