@@ -26,7 +26,9 @@ body {
     margin-left: 380px;
     padding: $space/2 0;
 }
-
+h1, h2, h3, h4, h5, h6 {
+    color: $subColor;
+}
 %mainBG {
     @include transition(500ms,'background-color');
     background-color: rgba($dkMainColor,0.9);
