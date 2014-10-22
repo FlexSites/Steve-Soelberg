@@ -18,11 +18,11 @@ $subColor: #f9b300;
 $dkSubColor: darken($subColor,20%);
 
 // Define fonts 
-@import "partials/font/comedicon"; 
-@import "partials/font/pacifico";
+@import "../../../global/public/scss/font/comedicon"; 
+@import "../../../global/public/scss/font/pacifico";
  
 // Base styles 
-@import "partials/base";
+@import "../../../global/public/scss/base";
 
 
 //@import "typography"; 
