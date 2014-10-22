@@ -9,6 +9,14 @@ var app = angular.module('comedian', ['ngRoute'])
             $locationProvider.html5Mode(true);
         }
     ])
+    // Whitelist resource sharing
+    .config(['$sceDelegateProvider',function($sceDelegateProvider){
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'self',
+            'http://*.youtube.com/**',
+            'https://*.youtube.com/**'
+        ]);
+    }])
     .controller('MediaController', ['$scope','$http',
         function($scope,$http) {
             console.log('Media Controller');
