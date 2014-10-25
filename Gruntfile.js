@@ -65,11 +65,6 @@ module.exports = function(grunt) {
                 },
 
                 files: {
-                    'public/ng/min/global.js': [
-                        '../global/public/ng/lib/angular.min.js',
-                        '../global/public/ng/lib/angular-route.min.js',
-                        'public/ng/global.js'
-                    ],
                     'public/ng/global.js': [
                         '../global/public/ng/lib/angular.min.js',
                         '../global/public/ng/lib/angular-route.min.js',
@@ -85,11 +80,6 @@ module.exports = function(grunt) {
                 },
 
                 files: {
-                    'public/ng/min/global.js': [
-                        '../global/public/ng/lib/angular.min.js',
-                        '../global/public/ng/lib/angular-route.min.js',
-                        'public/ng/global.js'
-                    ],
                     'public/ng/global.js': [
                         '../global/public/ng/lib/angular.min.js',
                         '../global/public/ng/lib/angular-route.min.js',
@@ -105,11 +95,6 @@ module.exports = function(grunt) {
                 },
 
                 files: {
-                    'public/ng/min/global.js': [
-                        '../global/public/ng/lib/angular.min.js',
-                        '../global/public/ng/lib/angular-route.min.js',
-                        'public/ng/global.js'
-                    ],
                     'public/ng/global.js': [
                         '../global/public/ng/lib/angular.min.js',
                         '../global/public/ng/lib/angular-route.min.js',
