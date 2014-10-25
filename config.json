@@ -5,7 +5,7 @@
 	"type": "entertainer",
 	"entertainerId": "53d1db2b562cdbef37fe0a48",
 	"styles": ["/css/style.css", "http://fonts.googleapis.com/css?family=Pacifico"],
-	"scripts": ["/ng/min/global.js"],
+	"scripts": ["/ng/global.js"],
 	"aliases": ["steve.omniorders.com"],
 	"analytics": "UA-42233857-2",
 	"smtpTransport": {
