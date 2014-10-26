@@ -7,6 +7,7 @@
 	"styles": ["/css/style.css", "http://fonts.googleapis.com/css?family=Pacifico"],
 	"scripts": ["/ng/global.js"],
 	"aliases": ["steve.omniorders.com"],
+	"redirects": [{"src": "/media", "dest": "/videos", "type": "permanent"}],
 	"analytics": "UA-42233857-2",
 	"smtpTransport": {
 	    "service": "Gmail",
