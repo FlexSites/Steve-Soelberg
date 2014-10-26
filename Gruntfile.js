@@ -162,6 +162,17 @@ module.exports = function(grunt) {
         }
     });
 
+    // For adding build number to file names
+    function formatResource(src, buildNumber){
+        if(_.isString(src))return /^\/[^/]/.test(src)&&_.isNumber(buildNumber)?src.replace(/(\D)\.(js|css)/,'$1'+buildNumber+'.$2'):src;
+        if(_.isArray(src)){
+            _.each(src,function(resource,index){
+                src[index] = formatResource(resource, buildNumber);
+            });
+            return src;
+        }
+    }
+
     // For compiling hogan.js/mustache 
     function hoganRender(env, done) {
 
@@ -178,6 +189,9 @@ module.exports = function(grunt) {
             dest: 'public/ng/global.js'
         }];
         var config = _.extend({}, require('./config.json'), require('./build.json'));
+
+        config.styles = formatResource(config.styles,config.buildNumber);
+        config.scripts = formatResource(config.scripts,config.buildNumber);
 
         config.routes = JSON.stringify(require('./routes.json'));
         config.env = env;
