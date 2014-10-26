@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                     'index.html',
                     '../global/partials/foot.html'
                 ],
-                dest: 'public/index.html',
+                dest: 'public/index.html'
             },
             dev: {
                 src: [
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                     'index.html',
                     '../global/partials/foot.html'
                 ],
-                dest: 'public/index.html',
+                dest: 'public/index.html'
             },
             prod: {
                 src: [
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
                     'index.html',
                     '../global/partials/foot.html'
                 ],
-                dest: 'public/index.html',
+                dest: 'public/index.html'
             }
         },
         // Uglify for development JS combination
