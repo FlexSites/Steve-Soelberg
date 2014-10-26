@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = function(grunt) {
 
     // 1. All configuration goes here 
@@ -153,28 +155,34 @@ module.exports = function(grunt) {
     //grunt.registerTask('default',['watch:actionItems']);
 
     grunt.registerTask('build', 'Run all my build tasks.', function(env) {
-      if (env && (env == 'prod' || env == 'dev' || env == 'local')) {
-        grunt.task.run('sass:' + env, 'concat:' + env, 'hogan:' + env, 'uglify:' + env);
-      }
-      else {
-        grunt.warn('Build environment invalid. Must be prod, dev, or local.');
-      }
+        if (env && (env == 'prod' || env == 'dev' || env == 'local')) {
+            grunt.task.run('sass:' + env, 'concat:' + env, 'hogan:' + env, 'uglify:' + env);
+        } else {
+            grunt.warn('Build environment invalid. Must be prod, dev, or local.');
+        }
     });
 
     // For compiling hogan.js/mustache 
-    function hoganRender(env,done){
-        
+    function hoganRender(env, done) {
+
         var hogan = require('hogan.js');
         var clc = require('cli-color');
         var fs = require('fs');
         var async = require('async');
 
-        var filenames = [{src:'public/index.html', dest:'public/index.html'}, {src:'public/ng/src/global.js', dest:'public/ng/global.js'}];
-        var config = require('./config.json');
+        var filenames = [{
+            src: 'public/index.html',
+            dest: 'public/index.html'
+        }, {
+            src: 'public/ng/src/global.js',
+            dest: 'public/ng/global.js'
+        }];
+        var config = _.extend({}, require('./config.json'), require('./build.json'));
+
         config.routes = JSON.stringify(require('./routes.json'));
         config.env = env;
 
-        async.each(filenames, function( file, callback) {
+        async.each(filenames, function(file, callback) {
             fs.readFile(file.src, 'utf8', function(err, data) {
                 var tmpl = hogan.compile(data, {
                     delimiters: '<@ @>'
@@ -183,22 +191,26 @@ module.exports = function(grunt) {
                     if (err) {
                         throw new Error('Failed to save ' + file.dest)
                     } else {
-                        done();
+                        callback();
                     }
                 });
             });
+        }, function(err) {
+            fs.writeFile('./build.json', JSON.stringify({
+                buildNumber: ++config.buildNumber
+            }), done);
         });
 
     }
-    
-    grunt.registerTask('hogan:local', 'Compiles mustache syntax templates', function(){
-        hoganRender('local',this.async());
+
+    grunt.registerTask('hogan:local', 'Compiles mustache syntax templates', function() {
+        hoganRender('local', this.async());
     });
-    grunt.registerTask('hogan:dev', 'Compiles mustache syntax templates', function(){
-        hoganRender('test',this.async());
+    grunt.registerTask('hogan:dev', 'Compiles mustache syntax templates', function() {
+        hoganRender('test', this.async());
     });
-    grunt.registerTask('hogan:prod', 'Compiles mustache syntax templates', function(){
-        hoganRender('',this.async());
+    grunt.registerTask('hogan:prod', 'Compiles mustache syntax templates', function() {
+        hoganRender('', this.async());
     });
 
 };
