@@ -9,6 +9,6 @@
 
     <h1>Videos</h1>
     <div ng-repeat="medium in items">
-        <iframe width="480" height="270" src="{{medium.src}}" frameborder="0" allowfullscreen="" style="margin: 0 20px 20px"></iframe>
+        <iframe width="480" height="270" ng-src="{{medium.src}}" frameborder="0" allowfullscreen="" style="margin: 0 20px 20px"></iframe>
     </div>
 </div>
