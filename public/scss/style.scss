@@ -12,17 +12,19 @@ $baseFontFamily: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue"
 $headerFontFamily: 'Pacifico';
   
 // Colors
-$mainColor: #1f85b2; 
-$dkMainColor: darken($mainColor,20%);
-$subColor: #f9b300; 
-$dkSubColor: darken($subColor,20%);
+$color-primary: #1f85b2; 
+$dkMainColor: darken($color-primary,20%);
+$color-secondary: #f9b300; 
+$dkSubColor: darken($color-secondary,20%);
 
 // Define fonts 
-@import "../../../global/public/scss/font/comedicon"; 
-@import "../../../global/public/scss/font/pacifico";
+// @import "/www/sites/global/public/scss/font/comedicon"; 
+// @import "/www/sites/global/public/scss/font/pacifico";
  
 // Base styles 
-@import "../../../global/public/scss/base";
+@import "/www/sites/global/public/scss/core/helper";
+@import "/www/sites/global/public/scss/core/base";
+@import "/www/sites/global/public/scss/core/grid";
 
 
 //@import "typography"; 

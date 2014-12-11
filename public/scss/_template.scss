@@ -27,7 +27,7 @@ body {
     padding: $space/2 0;
 }
 h1, h2, h3, h4, h5, h6 {
-    color: $subColor;
+    color: $color-secondary;
 }
 %mainBG {
     @include transition(500ms,'background-color');
