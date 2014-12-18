@@ -42,9 +42,10 @@
         border-bottom: none !important;
     }
 </style>
+<div>
     <form name="contactForm" class="mainBG p mb fl" ng-controller="MessageController as form" ng-submit="contactForm.$valid && saveData()" novalidate>
         <h1>Book Me!</h1>
-        {{contact}}
+
         <div ng-show="!form.submitted">
             <label for="name" class="full">
                 Name:
@@ -87,3 +88,4 @@
             <div class="text box">Message: {{message}}</div>
         </div>
     </form>
+</div>
