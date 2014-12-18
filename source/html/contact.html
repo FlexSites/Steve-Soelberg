@@ -43,10 +43,10 @@
     }
 </style>
 <div>
-    <form name="contactForm" class="mainBG p mb fl" ng-controller="MessageController as form" ng-submit="contactForm.$valid && saveData()" novalidate>
+    <form name="contactForm" class="mainBG p mb fl" ng-controller="MessageController" ng-submit="contactForm.$valid && saveData()" novalidate>
         <h1>Book Me!</h1>
 
-        <div ng-show="!form.submitted">
+        <div ng-show="!submitted">
             <label for="name" class="full">
                 Name:
                 <input type="text" ng-model="contact.name" required>
@@ -65,7 +65,7 @@
             </label>
             <button type="submit">Submit</button>
         </div>
-        <div ng-show="form.submitted">
+        <div ng-show="submitted">
             <div class="text box">Message: {{form.message}}</div>
         </div>
     </form>
