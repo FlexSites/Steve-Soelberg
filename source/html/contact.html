@@ -42,9 +42,11 @@
         border-bottom: none !important;
     }
 </style>
-    <form name="contactForm" class="mainBG p mb fl" ng-controller="ContactForm as form" ng-submit="contactForm.$valid && saveData()" novalidate>
+<div>
+    <form name="contactForm" class="mainBG p mb fl" ng-controller="MessageController" ng-submit="contactForm.$valid && saveData()" novalidate>
         <h1>Book Me!</h1>
-        <div ng-show="!form.submitted">
+
+        <div ng-show="!submitted">
             <label for="name" class="full">
                 Name:
                 <input type="text" ng-model="contact.name" required>
@@ -63,15 +65,15 @@
             </label>
             <button type="submit">Submit</button>
         </div>
-        <div ng-show="form.submitted">
+        <div ng-show="submitted">
             <div class="text box">Message: {{form.message}}</div>
         </div>
     </form>
 
 
-    <form name="subscribeForm" class="mainBG p fl" ng-controller="EmailList as form" ng-submit="subscribeForm.$valid && saveData()">
+    <form name="subscribeForm" class="mainBG p fl" ng-controller="SubscriberController" ng-submit="subscribeForm.$valid && saveData()">
         <h1>Join My Email List!</h1>
-            <div ng-show="!form.submitted">
+            <div ng-show="!submitted">
             <label for="name" class="full">
                 Name:
                 <input type="text" name="name" ng-model="subscriber.name" required>
@@ -82,7 +84,8 @@
             </label>
             <button type="submit">Submit</button>
         </div>
-        <div ng-show="form.submitted">
-            <div class="text box">Message: {{form.message}}</div>
+        <div ng-show="submitted">
+            <div class="text box">Message: {{message}}</div>
         </div>
     </form>
+</div>
