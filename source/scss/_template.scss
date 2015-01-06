@@ -10,7 +10,7 @@
 
 html {
     @include transition(500ms, "background-image");
-    background: #000 url(../img/blank.gif) right center / cover fixed no-repeat;
+    background: #000 url(../img/blank.gif) right top / cover fixed no-repeat;
     &.bg {
         &-home {
             background-image: url(/media/large/home.jpg);
@@ -36,8 +36,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: Pacifico, Helvetica;
-    font-weight: normal;
+    font-family: 'Pacifico', 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
     color: $color-secondary;
     text-indent: $space / 2;
 }
@@ -57,6 +58,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     #menu {
         display: none;
+        color: $color-secondary;
     }
     > ul {
         @extend .no-m, .no-p, .tc;
@@ -105,6 +107,25 @@ ng-view {
             height: 67%;
         }
     }
+} 
+
+button, .btn {
+    margin: 10px;
+    border: 0;
+    background-color: #f90;
+    color: #fff;
+    font-size: 1.07142857em;
+    line-height: 2.28571429em;
+    position: relative;
+    display: inline-block;
+    padding: 0 0.57142857em;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    border-bottom: none !important;
 }
 
 @include large {
@@ -112,7 +133,33 @@ ng-view {
         background-color: rgba($dkMainColor, 0.7);
     }
 }
-
+.testimonials {
+    background: none;
+}
+.testimonial {
+    > blockquote {
+        position: relative;
+        z-index: -1;
+        margin: 50px 0 0;
+        text-shadow: 1px 1px 1px #000;
+        padding-left: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        &:before {
+            content: "“";
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        &:after {
+            content: "”";
+        }
+    }
+    > cite {
+        font-size: 14px;
+        float: right;
+    }
+}
 
 @include desktop {
     body {
@@ -198,6 +245,7 @@ ng-view {
 @include mobile {
     html {
         background-image: url(/media/tablet/home.jpg) !important;
+        background-position: right bottom !important;
     }
     #nav {
         #menu {
@@ -222,6 +270,13 @@ ng-view {
                     border-bottom: solid 1px darken($dkMainColor, 20%);
                 }
             }
+        }
+    }
+    .testimonial {
+        > blockquote {
+            font-size: 14px;
+            padding-left: 10px;
+            margin-top: 0;
         }
     }
 }

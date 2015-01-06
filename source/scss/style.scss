@@ -7,7 +7,10 @@ $space: 40px;
 $verticalBlock: 48px;
 
 $baseFontSize: 17px;
-$baseLineHeight: 1.4em; 
+$baseLineHeight: 1.4; 
+
+$font-size: $baseFontSize;
+$line-height: $baseLineHeight;
 $baseFontFamily: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
 $headerFontFamily: 'Pacifico';
   
@@ -18,13 +21,13 @@ $color-secondary: #f9b300;
 $dkSubColor: darken($color-secondary,20%);
 
 // Define fonts 
-// @import "/www/sites/global/public/scss/font/comedicon"; 
+@import "/www/sites/global/source/scss/font/comedicon"; 
 // @import "/www/sites/global/public/scss/font/pacifico";
  
 // Base styles 
-@import "/www/sites/global/public/scss/core/helper";
-@import "/www/sites/global/public/scss/core/base";
-@import "/www/sites/global/public/scss/core/grid";
+@import "/www/sites/global/source/scss/core/helper";
+@import "/www/sites/global/source/scss/core/base";
+@import "/www/sites/global/source/scss/core/grid";
 
 
 //@import "typography"; 
