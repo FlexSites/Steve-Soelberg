@@ -131,7 +131,33 @@ button, .btn {
         background-color: rgba($dkMainColor, 0.7);
     }
 }
-
+.testimonials {
+    background: none;
+}
+.testimonial {
+    > blockquote {
+        position: relative;
+        z-index: -1;
+        margin: 50px 0 0;
+        text-shadow: 1px 1px 1px #000;
+        padding-left: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        &:before {
+            content: "“";
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        &:after {
+            content: "”";
+        }
+    }
+    > cite {
+        font-size: 14px;
+        float: right;
+    }
+}
 
 @include desktop {
     body {
@@ -241,6 +267,13 @@ button, .btn {
                     border-bottom: solid 1px darken($dkMainColor, 20%);
                 }
             }
+        }
+    }
+    .testimonial {
+        > blockquote {
+            font-size: 14px;
+            padding-left: 10px;
+            margin-top: 0;
         }
     }
 }
