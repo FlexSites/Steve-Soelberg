@@ -107,6 +107,25 @@ ng-view {
     }
 }
 
+button, .btn {
+    margin: 10px;
+    border: 0;
+    background-color: #f90;
+    color: #fff;
+    font-size: 1.07142857em;
+    line-height: 2.28571429em;
+    position: relative;
+    display: inline-block;
+    padding: 0 0.57142857em;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    border-bottom: none !important;
+}
+
 @include large {
     %mainBG {
         background-color: rgba($dkMainColor, 0.7);
