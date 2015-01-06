@@ -10,7 +10,7 @@
 
 html {
     @include transition(500ms, "background-image");
-    background: #000 url(../img/blank.gif) right center / cover fixed no-repeat;
+    background: #000 url(../img/blank.gif) right top / cover fixed no-repeat;
     &.bg {
         &-home {
             background-image: url(/media/large/home.jpg);
@@ -243,6 +243,7 @@ button, .btn {
 @include mobile {
     html {
         background-image: url(/media/tablet/home.jpg) !important;
+        background-position: right bottom !important;
     }
     #nav {
         #menu {
