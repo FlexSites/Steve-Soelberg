@@ -54,7 +54,11 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     left: 0;
     > #logo {
-        background: url(../img/logo.svg) center 5% / contain no-repeat;
+        background-image: url(../img/logo.jpg);
+        background-image: url(../img/logo.svg);
+        background-position: center 5%;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
     #menu {
         display: none;
