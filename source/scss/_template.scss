@@ -36,8 +36,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: Pacifico, Helvetica;
-    font-weight: normal;
+    font-family: 'Pacifico', 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
     color: $color-secondary;
     text-indent: $space / 2;
 }
@@ -57,6 +58,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     #menu {
         display: none;
+        color: $color-secondary;
     }
     > ul {
         @extend .no-m, .no-p, .tc;
@@ -105,7 +107,7 @@ ng-view {
             height: 67%;
         }
     }
-}
+} 
 
 button, .btn {
     margin: 10px;
