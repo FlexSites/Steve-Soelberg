@@ -1,50 +1,16 @@
-@charset "utf-8";
 
+// Site variables
+@import "variables/color";
+@import "variables/font";
+@import "variables/grid";
+$border-radius: 3px;
 
-//Global Vars   
-$prefix: '.';
-$space: 40px; 
-$verticalBlock: 48px;
+@import "/www/global/scss/core/base";
+@import "/www/global/scss/core/helper";
+@import "/www/global/scss/core/grid";
+@import "/www/global/scss/core/form";
+@import "/www/global/scss/core/spacing";
+@import "/www/global/scss/core/typography";
 
-$baseFontSize: 17px;
-$baseLineHeight: 1.4; 
-
-$font-size: $baseFontSize;
-$line-height: $baseLineHeight;
-$baseFontFamily: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
-$headerFontFamily: 'Pacifico';
-  
-// Colors
-$color-primary: #1f85b2; 
-$dkMainColor: darken($color-primary,20%);
-$color-secondary: #f9b300; 
-$dkSubColor: darken($color-secondary,20%);
-
-// Define fonts 
-@import "/www/sites/global/source/scss/font/comedicon"; 
-// @import "/www/sites/global/public/scss/font/pacifico";
- 
-// Base styles 
-@import "/www/sites/global/source/scss/core/helper";
-@import "/www/sites/global/source/scss/core/base";
-@import "/www/sites/global/source/scss/core/grid";
-
-
-//@import "typography"; 
-//@import "partials/backgroundColor";
-
-//Element partials. Order doesn't matter.
-//@import "partials/product";
-//@import "partials/table";
-//@import "partials/sidebar";
-//@import "partials/button";
-//@import "partials/tab";
-//@import "partials/box";
-//@import "partials/list";
-//@import "partials/misc";
-//@import "partials/shame";
-//@import "partials/form";
-//@import "partials/sprint";
-
-//Specific template
+@import "overrides";
 @import "template";

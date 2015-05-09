@@ -1,73 +1,40 @@
-<style>
-    form {
-        width: 100%;
-    }
-    label {
-        width: calc(50% - 20px);
-        display: block;
-        float: left;
-        margin: 10px;
-        font-weight: bold;
-    }
-    label > input, label > textarea {
-        width: 100%;
-        padding: 8px;
-        font-weight: bold;
-    }
-    :not(:focus).ng-dirty.ng-invalid {
-        border-color: #f00;
-    }
-    label.full {
-        width: calc(100% - 20px);
-    }
-    #bodyContent > .p {
-        padding: 5%;
-    }
-</style>
 <div>
-    <form name="contactForm" class="mainBG p mb fl" ng-controller="MessageController" ng-submit="contactForm.$valid && saveData()" novalidate>
-        <h1>Book Me!</h1>
+  <form id="contact-form" class="grid-full">
+    <h1>Book Me!</h1>
 
-        <div ng-show="!submitted">
-            <label for="name" class="full">
-                Name:
-                <input type="text" ng-model="contact.name" required>
-            </label>
-            <label for="phone">
-                Phone:
-                <input type="tel" ng-model="contact.phone" required>
-            </label>
-            <label for="email">
-                Email:
-                <input type="email" ng-model="contact.email" required>
-            </label>
-            <label for="message" class="full">
-                Message:
-                <textarea ng-model="contact.message"></textarea>
-            </label>
-            <button type="submit">Submit</button>
-        </div>
-        <div ng-show="submitted">
-            <div class="text box">Message: {{form.message}}</div>
-        </div>
-    </form>
+    <div id="requiredMessage" class="grid-full error-message hide">Please enter all required fields</div>
+    <label for="name" class="grid-full no-pt">
+      Name: <span>*Required</span>
+      <input type="text" id="name" required>
+    </label>
+    <label for="email" class="grid-half">
+      Email: <span>*Required</span>
+      <input type="email" id="email" required>
+    </label>
+    <label for="phone" class="grid-half">
+      Phone:
+      <input type="tel" id="phone">
+    </label>
+    <label for="body" class="grid-full">
+      Message: <span>*Required</span>
+      <textarea id="body" required></textarea>
+    </label>
+    <button class="grid-full tr mb2x mt2x">Send Message <i class="icon-email"></i></button>
+  </form>
 
 
-    <form name="subscribeForm" class="mainBG p fl" ng-controller="SubscriberController" ng-submit="subscribeForm.$valid && saveData()">
-        <h1>Join My Email List!</h1>
-            <div ng-show="!submitted">
-            <label for="name" class="full">
-                Name:
-                <input type="text" name="name" ng-model="subscriber.name" required>
-            </label>
-            <label for="email" class="full">
-                Email:
-                <input type="email" name="email" ng-model="subscriber.email" required>
-            </label>
-            <button type="submit">Submit</button>
-        </div>
-        <div ng-show="submitted">
-            <div class="text box">Message: {{message}}</div>
-        </div>
-    </form>
+  <form name="subscribeForm" class="grid-full">
+    <h1>Join My Email List!</h1>
+
+    <div id="requiredMessage" class="grid-full error-message hide">Please enter all required fields</div>
+    <label for="name" class="grid-full">
+      Name: <span>*Required</span>
+      <input type="text" name="name" required>
+    </label>
+    <label for="email" class="grid-full">
+      Email: <span>*Required</span>
+      <input type="email" name="email" required>
+    </label>
+    <button class="grid-full tr mb2x mt2x">Submit</button>
+  </form>
 </div>

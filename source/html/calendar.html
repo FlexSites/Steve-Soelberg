@@ -1,20 +1,5 @@
-<div>
-	<h1>Upcoming Events!</h1>
-
-	<div class="calendar">
-		<div class="calendar_item grid-full">
-			<h3>Wiseguys Comedy Club</h3>
-			<span>West Valley City, UT</span>
-			<span>Oct. 10-11</span>
-		</div>
-		<div class="calendar_item grid-full">
-			<h3>Wiseguys Comedy Cafe</h3>
-			<span>Ogden, UT</span>
-			<span>Nov. 28-29</span>
-		</div>
-	</div>
-
-	<style>
+<!--[flex]>{"entertainers/<<entertainerId>>/events":""}<![flex]-->
+<style>
 	.calendar_item {
 		padding: 10px;
 		background-color: #f90;
@@ -34,7 +19,20 @@
 		margin-top: 0;
 		margin-left: 0;
 		color: #fff !important;
-
 	}
-	</style>
+</style>
+<div>
+	<h1>Upcoming Events</h1>
+
+	<div class="calendar">
+		[[#events]]
+		<div class="calendar_item grid-full">
+			<h3>[[venue.name]]</h3>
+			<span>[[venue.city]], [[venue.state]]</span>
+			<span>[[shortDate]]</span>
+		</div>
+		[[/events]]
+	</div>
+
+
 </div>

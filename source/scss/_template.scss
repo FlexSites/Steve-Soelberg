@@ -7,111 +7,78 @@
     font-style: normal;
 }
 
-
-html {
-    @include transition(500ms, "background-image");
-    background: #000 url(../img/blank.gif) right top / cover fixed no-repeat;
-    &.bg {
-        &-home {
-            background-image: url(/media/large/home.jpg);
-        }
-        &-contact {
-            background-image: url(/media/large/contact.jpg);
-        }
-        &-bio {
-            background-image: url(/media/large/bio.jpg);
-        }
-        &-media {
-            background-image: url(/media/large/media.jpg);
-        }
-        &-calendar {
-            background-image: url(/media/large/calendar.jpg);
-        }
-    }
-}
-
-body {
-    margin-left: 380px;
-    padding: $space / 2 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Pacifico', 'Helvetica';
-    font-style: normal;
-    font-weight: 400;
-    color: $color-secondary;
-    text-indent: $space / 2;
+.splash {
+  display: none;
 }
 
 %mainBG {
-    @include transition(500ms, "background-color");
-    background-color: rgba($dkMainColor, 0.9);
+  @include transition(500ms, "background-color");
+  background-color: rgba($color-primary-dk, 0.9);
 }
 
-#nav {
-    @extend %mainBG;
-    position: fixed;
-    top: 0;
-    left: 0;
-    > #logo {
-        background-image: url(../img/logo.jpg);
-        background-image: url(../img/logo.svg);
-        background-position: center 5%;
-        background-size: contain;
-        background-repeat: no-repeat;
+.nav {
+  @extend %mainBG;
+  position: fixed;
+  top: 0;
+  left: 0;
+  &_logo {
+    background-image: url(/img/logo.jpg);
+    background-image: url(/img/logo.svg);
+    background-position: center 5%;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &_toggle {
+    display: none;
+    color: $color-secondary;
+  }
+  &_menu {
+    @extend .no-m;
+    @extend .no-p;
+    @extend .tc;
+    &:hover {
+      a {
+        background: none !important;
+      }
     }
-    #menu {
-        display: none;
-        color: $color-secondary;
-    }
-    > ul {
-        @extend .no-m, .no-p, .tc;
-        &:hover {
-            a {
-                background: none !important;
-            }
-        }
-        > li {
-            list-style-type: none;
-            > a {
-                text-decoration: none;
-                line-height: 1em;
-                color: #fff;
-                text-transform: uppercase;
-                font-family: Helvetica;
-                display: block;
-                &.current, &:hover {
-                    background: rgba(#fff, 0.4);
-                }
-                &.current:hover, &:hover {
-                    background: rgba(#fff, 0.4) !important;
-                }
-            }
-        }
-    }
-}
-
-ng-view {
-    @extend #bodyContent;
-}
-
-#bodyContent {
-    @extend .grid-full;
-    @include calc("min-height", 100%);
-    > div {
-        @extend %mainBG, .clearfix;
+    > li {
+      list-style-type: none;
+      > a {
+        text-decoration: none;
+        line-height: 1em;
         color: #fff;
-        padding: $space / 2;
+        text-transform: uppercase;
+        font-family: Helvetica;
+        display: block;
+        &.current, &:hover {
+          background: rgba(#fff, 0.4);
+        }
+        &.current:hover, &:hover {
+          background: rgba(#fff, 0.4) !important;
+        }
+      }
     }
+  }
+}
+
+.body-content {
+  @extend .grid-full;
+  @include calc("min-height", 100%);
+  > div {
+    @extend %mainBG;
+    @extend .clearfix;
+    color: #fff;
+    padding: $space / 2;
+  }
 }
 
 @media (max-height: 700px) {
-    #nav {
-        > ul {
-            height: 67%;
-        }
+  .nav {
+    > ul {
+      height: 67%;
     }
-} 
+  }
+}
 
 button, .btn {
     margin: 10px;
@@ -134,46 +101,50 @@ button, .btn {
 
 @include large {
     %mainBG {
-        background-color: rgba($dkMainColor, 0.7);
+        background-color: rgba($color-primary-dk, 0.7);
     }
 }
 .testimonials {
-    background: none;
+    background: none !important;
 }
 .testimonial {
-    > blockquote {
-        position: relative;
-        z-index: -1;
-        margin: 50px 0 0;
-        text-shadow: 1px 1px 1px #000;
-        padding-left: 15px;
-        font-size: 24px;
-        font-weight: bold;
-        &:before {
-            content: "“";
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        &:after {
-            content: "”";
-        }
+  display: none;
+  &_-active {
+    display: block;
+  }
+  > blockquote {
+    position: relative;
+    z-index: -1;
+    margin: 50px 0 0;
+    text-shadow: 1px 1px 1px #000;
+    padding-left: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    &:before {
+      content: "“";
+      position: absolute;
+      top: 0;
+      left: 0;
     }
-    > cite {
-        font-size: 14px;
-        float: right;
+    &:after {
+      content: "”";
     }
+  }
+  > cite {
+    font-size: 14px;
+    float: right;
+  }
 }
 
 @include desktop {
     body {
         width: 560px;
     }
-    #nav {
+    .nav {
         width: 280px;
         height: 100%;
         left: $space * 2;
-        > #logo {
+        &_logo {
             width: 90%;
             height: 23%;
             display: block;
@@ -218,12 +189,12 @@ button, .btn {
         margin-left: 0;
         width: 100%;
     }
-    #nav {
+    .nav {
         float: left;
         width: 210px;
         margin-top: 0 !important;
         width: 100% !important;
-        > #logo {
+        &_logo {
             width: calc(25% - 10px) !important;
             float: left;
             margin: 5px !important;
@@ -251,7 +222,7 @@ button, .btn {
         background-image: url(/media/tablet/home.jpg) !important;
         background-position: right bottom !important;
     }
-    #nav {
+    .nav {
         #menu {
             display: block;
             line-height: 48px;
@@ -270,8 +241,8 @@ button, .btn {
                 > li {
                     display: block;
                     width: 100%;
-                    border-top: solid 1px lighten($dkMainColor, 10%);
-                    border-bottom: solid 1px darken($dkMainColor, 20%);
+                    border-top: solid 1px lighten($color-primary-dk, 10%);
+                    border-bottom: solid 1px darken($color-primary-dk, 20%);
                 }
             }
         }

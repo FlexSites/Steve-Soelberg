@@ -1,6 +1,10 @@
+<!--[flex]>{"entertainers/<<entertainerId>>/media?filter[where][type]=video":""}<![flex]-->
+
 <div>
-	<h1 class="ml">Videos</h1>
-	<div ng-repeat="medium in items" class="mb">
-	    <iframe width="480" height="270" ng-src="{{medium.src}}" frameborder="0" allowfullscreen=""></iframe>
-	</div>
+  <div class="grid-full">
+  	<h1 class="ml">Videos</h1>
+    [[#media]]
+    <iframe height="270" src="[[embed]]" frameborder="0" allowfullscreen="" class="flush-full mb"></iframe>
+    [[/media]]
+  </div>
 </div>

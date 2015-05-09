@@ -1,16 +1,24 @@
-<<>ngHead>>
+<<>head>>
 
-<nav id="nav">
-    <a href="/" id="logo"></a>
-    <a ng-click="menuIsShowing = !menuIsShowing" id="menu" class="icon-menu"></a>
-    <ul ng-class="{'open': menuIsShowing}" ng-click="menuIsShowing = false">
-        <li><a href="/">Home</a></li>
-        <li><a href="/videos">Media</a></li>
-        <li><a href="/bio">Bio</a></li>
-        <li><a href="/calendar">Calendar</a></li>
-        <li><a href="/contact">Contact</a></li>
-    </ul>
+<nav class="nav">
+  <a href="/" class="nav_logo"></a>
+  <a class="nav_toggle icon-menu" id="nav_toggle"></a>
+  <ul class="nav_menu">
+    <li><a href="/">Home</a></li>
+    <li><a href="/videos">Media</a></li>
+    <li><a href="/bio">Bio</a></li>
+    <!-- <li><a href="/calendar">Calendar</a></li> -->
+    <li><a href="/contact">Contact</a></li>
+  </ul>
 </nav>
-<ng-view></ng-view>
+
+<section class="body-content">
+[[$content]]
+  <h1>Page not found</h1>
+  <p>[[errorMessage]]</p>
+[[/content]]
+</section>
+
+<style>html{background-image: url(/media/large/[[path]].jpg)}</style>
 
 <<>foot>>
