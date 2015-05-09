@@ -1,7 +1,6 @@
 <div>
   <form id="contact-form" class="grid-full">
     <h1>Book Me!</h1>
-
     <div id="requiredMessage" class="grid-full error-message hide">Please enter all required fields</div>
     <label for="name" class="grid-full no-pt">
       Name: <span>*Required</span>
@@ -21,20 +20,18 @@
     </label>
     <button class="grid-full tr mb2x mt2x">Send Message <i class="icon-email"></i></button>
   </form>
-
-
-  <form name="subscribeForm" class="grid-full">
+  <div id="message-confirm" class="success-message grid-full hide"></div>
+  <form id="subscribe-form" class="grid-full">
     <h1>Join My Email List!</h1>
-
-    <div id="requiredMessage" class="grid-full error-message hide">Please enter all required fields</div>
-    <label for="name" class="grid-full">
+    <label for="subname" class="grid-full">
       Name: <span>*Required</span>
-      <input type="text" name="name" required>
+      <input type="text" id="subname" required>
     </label>
-    <label for="email" class="grid-full">
+    <label for="subemail" class="grid-full">
       Email: <span>*Required</span>
-      <input type="email" name="email" required>
+      <input type="email" id="subemail" required>
     </label>
     <button class="grid-full tr mb2x mt2x">Submit</button>
   </form>
+  <div id="subscribe-confirm" class="success-message grid-full hide"></div>
 </div>
