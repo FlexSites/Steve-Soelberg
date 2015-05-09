@@ -19,8 +19,7 @@ $(function(){
 
     if(!valid) return;
     $.ajax({
-      //url: 'http://v2.flexhub.io/contactMessages',
-      url: 'http://localhost:3000/contactMessages',
+      url: 'http://v2.flexhub.io/contactMessages',
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       method: 'POST',
@@ -51,8 +50,7 @@ $('#subscribe-form').on('submit', function(){
     },{});
     if(!valid) return;
     $.ajax({
-      //url: 'http://v2.flexhub.io/subscribers',
-      url:'http://localhost:3000/subscribers',
+      url: 'http://v2.flexhub.io/subscribers',
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       method: 'POST',
