@@ -117,17 +117,18 @@ button, .btn {
     z-index: -1;
     margin: 50px 0 0;
     text-shadow: 1px 1px 1px #000;
-    padding-left: 15px;
+    padding: 15px;
     font-size: 24px;
     font-weight: bold;
     &:before {
       content: "“";
       position: absolute;
-      top: 0;
+      top: 15px;
       left: 0;
     }
     &:after {
       content: "”";
+      position: static;
     }
   }
   > cite {
