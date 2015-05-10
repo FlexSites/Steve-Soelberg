@@ -4,11 +4,20 @@ $(function(){
   var isEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     , $requiredMessage = $('#requiredMessage');
 
-  $('#contact-form').on('submit', function(){
-    var valid = true
-      , form = ['name','phone','email','body'].reduce(function(prev, curr){
-      var $el = $('#'+curr)
+  $('#message-form, #subscribe-form').on('submit', function(){
+    var fields = ['name','email']
+      , isSubscriber = $(this).is('#subscribe-form')
+      , valid = true;
+
+    if(!isSubscriber) fields.push('phone','body');
+
+    var form = fields.reduce(function(prev, curr){
+      var id = curr;
+      if(isSubscriber) id = 'sub-' + id;
+      var $el = $('#'+id)
         , val = $.trim($el.val());
+
+      console.log($el, '#'+id);
       if(($el.attr('type') === 'email' && !isEmail.test(val)) || ($el.prop('required') && !val.length)){
         handleError($el);
         valid = false;
@@ -18,16 +27,19 @@ $(function(){
     },{});
 
     if(!valid) return;
+
     $.ajax({
-      url: 'http://v2.flexhub.io/contactMessages',
+      url: 'http://<<env>>api.flexsites.io/' + (isSubscriber?'subscribers':'contactMessages'),
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       method: 'POST',
       data: JSON.stringify(form),
       success: function() {
         $requiredMessage.hide();
-        $('#contact-form').hide();
-        $('#message-confirm').text('Thanks! Your message is on it\'s way!').show();
+        $('#' + (isSubscriber?'subscribe':'message') + '-form').hide();
+
+        var msg = isSubscriber ? 'Thanks! You\'re now part of one of the funniest email lists ever!' : 'Thanks! Your message is on it\'s way!';
+        $('#' + (isSubscriber?'subscribe':'message') + '-confirm').text(msg).show();
       },
       error: function(){
         // TODO: Handle error case
@@ -35,38 +47,6 @@ $(function(){
     });
     return false;
   });
-
-$('#subscribe-form').on('submit', function(){
-    var valid = true
-      , subscriber = ['name','email'].reduce(function(prev, curr){
-      var $el = $('#sub'+curr)
-        , val = $.trim($el.val());
-      if(($el.attr('type') === 'email' && !isEmail.test(val)) || !val.length){
-        handleError($el);
-        valid=false;
-      }
-      prev[curr] = val;
-      return prev;
-    },{});
-    if(!valid) return;
-    $.ajax({
-      url: 'http://v2.flexhub.io/subscribers',
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-      method: 'POST',
-      data: JSON.stringify(subscriber),
-      success: function() {
-        $requiredMessage.hide();
-        $('#subscribe-form').hide();
-        $('#subscribe-confirm').text('Thanks! You\'re now part of one of the funniest email lists ever!').show();
-      },
-      error: function(){
-        // TODO: Handle error case
-      }
-    });
-    return false;
-  });
-
 
   function handleError($el){
     $el.addClass('background-red').focus();
