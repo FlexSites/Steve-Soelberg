@@ -17,7 +17,6 @@ $(function(){
       var $el = $('#'+id)
         , val = $.trim($el.val());
 
-      console.log($el, '#'+id);
       if(($el.attr('type') === 'email' && !isEmail.test(val)) || ($el.prop('required') && !val.length)){
         handleError($el);
         valid = false;
@@ -29,7 +28,7 @@ $(function(){
     if(!valid) return;
 
     $.ajax({
-      url: 'http://<<env>>api.flexsites.io/' + (isSubscriber?'subscribers':'contactMessages'),
+      url: 'http://<<prefix>>api.flexsites.io/' + (isSubscriber?'subscribers':'contactMessages'),
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       method: 'POST',
