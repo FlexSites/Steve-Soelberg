@@ -1,6 +1,6 @@
 {
   "name": "steve-soelberg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "data": {
     "entertainerId": "55232c9258a27692c55b64b8"
@@ -15,6 +15,5 @@
   "devDependencies": {
     "gulp": "^3.8.11"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
