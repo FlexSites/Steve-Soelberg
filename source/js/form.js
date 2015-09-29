@@ -28,7 +28,7 @@ $(function(){
     if(!valid) return;
 
     $.ajax({
-      url: 'http://<<prefix>>api.flexsites.io/' + (isSubscriber?'subscribers':'contactMessages'),
+      url: '/api/v1/' + (isSubscriber?'subscribers':'contact-messages'),
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       method: 'POST',
