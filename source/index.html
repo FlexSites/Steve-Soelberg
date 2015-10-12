@@ -1,30 +1,47 @@
-<<>head>>
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
 
-<nav class="nav">
-  <a href="/" class="nav_logo"></a>
-  <a class="nav_toggle icon-menu" id="nav_toggle"></a>
-  <ul class="nav_menu">
-    <li><a href="/">Home</a></li>
-    <li><a href="/videos">Media</a></li>
-    <li><a href="/bio">Bio</a></li>
-    <!-- <li><a href="/calendar">Calendar</a></li> -->
-    <li><a href="/wiseguys">Next Event</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-</nav>
+    [[>meta]]
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <noscript><div class="error box" style="font-size: 1.5em;"><mark>Warning!</mark> Please enable JavaScript. Our site will not display information or function properly without it.</div></noscript>
+    <!--[if lt IE 9]><div class="error box"><mark>Error!</mark> Sorry, your internet browser is no longer supported. Pages will not display properly and functions will be unavailable. <a href="http://browsehappy.com" target="_blank">Upgrade for free now!</a></div><![endif]-->
 
-<section class="body-content">
-[[$content]]
-  <h1>Page not found</h1>
-  <p>[[errorMessage]]</p>
-[[/content]]
-</section>
 
-[[#page.media]]
-<style>html{background-image: url([[page.media.0.src]])}</style>
-[[/page.media]]
-[[^page.media]]
-<style>html{background-image: url(/media/large/home.jpg)}</style>
-[[/page.media]]
+    <nav class="nav">
+      <a href="/" class="nav_logo"></a>
+      <a class="nav_toggle icon-menu" id="nav_toggle"></a>
+      <ul class="nav_menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/videos">Media</a></li>
+        <li><a href="/bio">Bio</a></li>
+        <!-- <li><a href="/calendar">Calendar</a></li> -->
+        <li><a href="/wiseguys">Next Event</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
 
-<<>foot>>
+    <section class="body-content">
+    [[$content]]
+      <h1>Page not found</h1>
+      <p>[[errorMessage]]</p>
+    [[/content]]
+    </section>
+
+    [[#page.media]]
+    <style>html{background-image: url([[page.media.0.src]])}</style>
+    [[/page.media]]
+    [[^page.media]]
+    <style>html{background-image: url(/media/large/home.jpg)}</style>
+    [[/page.media]]
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/form.js"></script>
+
+    [[>analytics]]
+  </body>
+</html>

@@ -1,29 +1,23 @@
-# README #
+# Comedian Steve Soelberg
 
-This README would normally document whatever steps are necessary to get your application up and running.
+[ ![Codeship Status for FlexSites/Steve-Soelberg](https://codeship.com/projects/82ed4740-510f-0133-fe40-6677693bebe2/status?branch=master)](https://codeship.com/projects/107894)
 
-### What is this repository for? ###
+Official website for comedian Steve Soelberg
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Installation
 
-### How do I get set up? ###
+* Clone from github
+* `npm i`
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Commands
 
-### Contribution guidelines ###
+#### `npm run build`
+Build stevesoelberg.com assets for production (with rev-revision)
 
-* Writing tests
-* Code review
-* Other guidelines
+#### `npm run watch`
+Continuously build for staging on file change
 
-### Who do I talk to? ###
+### Maintainer
 
-* Repo owner or admin
-* Other community or team contact
+Seth Tippetts
+seth@flexsites.io
