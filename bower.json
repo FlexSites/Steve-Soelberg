@@ -1,0 +1,25 @@
+{
+  "name": "steve-soelberg",
+  "description": "Official website for comedian Steve Soelberg",
+  "main": "index.html",
+  "authors": [
+    "Seth Tippetts <sethtippetts@gmail.com> (http://sethtippetts.com)"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/FlexSites/Steve-Soelberg",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flexsites-angular-sdk": "~1.0.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.7",
+    "angular": "~1.4.7"
+  }
+}
