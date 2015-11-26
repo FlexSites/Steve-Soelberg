@@ -5,18 +5,19 @@ import rev from 'gulp-rev';
 import revReplace from 'gulp-rev-replace';
 import gulpif from 'gulp-if';
 import sass from 'gulp-sass';
-import livereload from 'gulp-livereload';
 import del from 'del';
 import runSequence from 'run-sequence';
 import pkg from './package.json';
+import connect from 'gulp-connect';
 
 /** ALIASES **/
 gulp.task('watch', ['default']);
 gulp.task('sass', ['css']);
 
 /** TASKS **/
-gulp.task('default', ['assetsDev'], watch);
-gulp.task('build:livereload', ['assetsDev'], reload);
+gulp.task('default', ['server', 'assetsDev'], watch);
+gulp.task('server', server);
+gulp.task('build:livereload', ['assetsDev']);
 gulp.task('assets', ['css'], assets);
 gulp.task('assetsDev', ['css'], assetsDev);
 gulp.task('css', css);
@@ -28,17 +29,20 @@ gulp.task('build', (done) => {
 
 /** FILESYSTEM WATCHER **/
 function watch(){
-  livereload.listen();
   gulp.watch(['source/**/*', '!**/*.css'], ['build:livereload']);
+}
+
+function server() {
+  connect.server({
+    port: 8080,
+    root: 'public',
+    livereload: true
+  })
 }
 
 /** DELETE PUBLIC **/
 function clean(){
   del.sync(['public']);
-}
-
-function reload(){
-  livereload.reload();
 }
 
   /** DELETE PUBLIC **/
@@ -90,7 +94,8 @@ function assets() {
 
 function assetsDev(){
   return gulp.src(['source/**/*.*', '!**/*.scss'])
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('public'))
+    .pipe(connect.reload());
 }
 function isJSorCSS(vinyl){
   return /\.(js|css)$/.test(vinyl.relative);
