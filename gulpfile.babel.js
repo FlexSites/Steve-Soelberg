@@ -1,102 +1,128 @@
-import header from 'gulp-header';
-import prettify from 'gulp-prettify';
 import gulp from 'gulp';
-import rev from 'gulp-rev';
-import revReplace from 'gulp-rev-replace';
 import gulpif from 'gulp-if';
+import header from 'gulp-header';
 import sass from 'gulp-sass';
-import del from 'del';
+import minifyCSS from 'gulp-minify-css';
+import path from 'path';
+import RevAll from 'gulp-rev-all';
 import runSequence from 'run-sequence';
-import pkg from './package.json';
+import useref, { assets as userefAssets } from 'gulp-useref';
+import { sync as del } from 'rimraf';
 import connect from 'gulp-connect';
+import gzip from 'gulp-gzip';
 
-/** ALIASES **/
-gulp.task('watch', ['default']);
-gulp.task('sass', ['css']);
+import pkg from './package.json';
 
-/** TASKS **/
-gulp.task('default', ['server', 'assetsDev'], watch);
-gulp.task('server', server);
-gulp.task('build:livereload', ['assetsDev']);
-gulp.task('assets', ['css'], assets);
-gulp.task('assetsDev', ['css'], assetsDev);
-gulp.task('css', css);
-gulp.task('clean', clean);
+let dest = 'public', cwd = 'source', tmp = 'tmp';
+let sources = {
+  all: ['**/*'],
+  scripts: ['**/*.js'],
+  documents: ['**/*.html'],
+  images: ['**/*.png', '**/*.jpg', '**/*.svg'],
+  fonts: ['**/*.eot', '**/*.ttf', '**/*.woff', '**/*.woff2', '**/*.otf'],
+  sass: ['**/*.sass', '**/*.scss'],
+  styles: ['**/*.css'],
+};
 
-gulp.task('build', (done) => {
-  runSequence('clean', 'assets', done);
+gulp.task('default', [ 'watch' ]);
+gulp.task('start', ['build']);
+gulp.task('compile', ['images', 'styles', 'scripts', 'documents', 'fonts']);
+
+gulp.task('build', () => {
+  return runSequence('clean', 'compile', 'reference', 'revision', 'cleanup')
+});
+gulp.task('build:dev', () => {
+  return runSequence('compile', 'development', 'cleanup');
 });
 
-/** FILESYSTEM WATCHER **/
-function watch(){
-  gulp.watch(['source/**/*', '!**/*.css'], ['build:livereload']);
+// Cleanup
+gulp.task('clean', () => del(dest));
+gulp.task('cleanup', () => del(tmp));
+
+// Assets
+gulp.task('styles', styles);
+gulp.task('scripts', scripts);
+gulp.task('images', images);
+gulp.task('fonts', fonts);
+gulp.task('documents', documents);
+
+// Prod only version management
+gulp.task('revision', revision);
+gulp.task('reference', reference);
+
+// Dev commands
+gulp.task('work', ['watch']);
+gulp.task('watch', ['build:dev'], watch);
+gulp.task('development', development);
+
+function reference() {
+  let assets = userefAssets();
+  let htmlComment = header('<!-- ' + pkg.name + ' v' + pkg.version + ' -->\n\n');
+  let scriptComment = header('/* ' + pkg.name + ' v' + pkg.version + ' */\n\n');
+  return gulp.src('tmp/**/*.html')
+    .pipe(gulpif(sources.documents, htmlComment))
+    .pipe(assets)
+    .pipe(gulpif(sources.styles, minifyCSS({ keepSpecialComments: 0 })))
+    .pipe(gulpif(sources.scripts.concat(sources.styles), scriptComment))
+    .pipe(assets.restore())
+    .pipe(useref())
+    .pipe(gulp.dest(tmp));
 }
 
-function server() {
-  connect.server({
-    port: 8080,
-    root: 'public',
-    livereload: true
-  })
+function revision() {
+  let revAll = new RevAll({
+    dontRenameFile: [/index\.html$/],
+    dontSearchFile: [/vendor/, /jpg$/, /png$/],
+    transformFilename: function (file, hash) {
+      var ext = path.extname(file.path);
+      return path.basename(file.path, ext) + '-' + hash.substr(0, 10) + ext; // 3410c.filename.ext
+    }
+  });
+  return gulp.src(sources.all, { cwd: tmp })
+    .pipe(revAll.revision())
+    .pipe(gulp.dest(dest))
+    .pipe(gzip())
+    .pipe(gulp.dest(dest));
 }
 
-/** DELETE PUBLIC **/
-function clean(){
-  del.sync(['public']);
-}
-
-  /** DELETE PUBLIC **/
-function css(){
-  return gulp.src('source/scss/**.scss')
-    .pipe(sass())
-
-  // .pipe(sourcemaps.write('maps', {
-  //     includeContent: false, //     sourceRoot: '/source'
-  // }))
-
-  .pipe(gulp.dest('source/css'));
-}
-
-/** BUILD PROCESS **/
-function assets() {
-  return gulp.src(['source/**/*', '!**/*.scss'])
-
-    // Minify JS
-    // .pipe(gulpif('*.js', uglify()))
-
-    // Minify CSS
-    // .pipe(gulpif('*.css', minifyCSS({ keepSpecialComments: 0 })))
-
-    // Prettify HTML
-    .pipe(gulpif('*.html', prettify({
-      indent_size: 2,
-    })))
-
-    // Add versioned headers
-    .pipe(gulpif('*.html', header('<!-- ' + pkg.name + ' v' + pkg.version + ' -->\n\n')))
-    .pipe(gulpif(isJSorCSS, header('/* ' + pkg.name + ' v' + pkg.version + ' */\n\n')))
-
-    // Optimize images
-    // .pipe(imagemin({
-    //   progressive: true, //   interlaced: true
-    // }))
-
-    // Add revision sha-sum
-    .pipe(gulp.dest('./public'))
-    .pipe(gulpif(isJSorCSS, rev()))
-
-    // // Replace sha'd references in all text files
-    .pipe(revReplace())
-
-    // Output stream to 'public'
-    .pipe(gulp.dest('./public'));
-}
-
-function assetsDev(){
-  return gulp.src(['source/**/*.*', '!**/*.scss'])
-    .pipe(gulp.dest('public'))
+function development() {
+  return gulp.src(sources.all, { cwd: tmp })
+    .pipe(gulp.dest(dest))
     .pipe(connect.reload());
 }
-function isJSorCSS(vinyl){
-  return /\.(js|css)$/.test(vinyl.relative);
+
+function watch() {
+  connect.server({
+    root: 'public',
+    livereload: true,
+  });
+  gulp.watch('source/**/*', ['build:dev']);
 }
+
+// Asset compilation
+function styles() {
+  return gulp.src(sources.sass.concat(sources.styles), { cwd })
+    .pipe(gulpif(sources.sass, sass()))
+    .pipe(gulp.dest(tmp));
+}
+
+function scripts() {
+  return gulp.src(sources.scripts, { cwd })
+    .pipe(gulp.dest(tmp));
+}
+
+function images() {
+  return gulp.src(sources.images, { cwd })
+    .pipe(gulp.dest(tmp));
+}
+
+function fonts() {
+  return gulp.src(sources.fonts, { cwd })
+    .pipe(gulp.dest(tmp));
+}
+
+function documents() {
+  return gulp.src(sources.documents, { cwd })
+    .pipe(gulp.dest(tmp));
+}
+
