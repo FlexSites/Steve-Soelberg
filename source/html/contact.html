@@ -1,37 +1,37 @@
 <div>
-  <form id="message-form" class="grid-full">
+  <form name="messageForm" class="grid-full" ng-submit="contact.send(messageForm.$valid)" novalidate>
     <h1>Book Me!</h1>
-    <div id="requiredMessage" class="grid-full error-message hide">Please enter all required fields</div>
+    <div ng-show="contact.errorMessage" class="grid-full error-message">{{ contact.errorMessage }}</div>
     <label for="name" class="grid-full no-pt">
       Name: <span>*Required</span>
-      <input type="text" id="name" required>
+      <input type="text" id="name" required ng-model="contact.message.name">
     </label>
     <label for="email" class="grid-half">
       Email: <span>*Required</span>
-      <input type="email" id="email" required>
+      <input type="email" id="email" required ng-model="contact.message.email">
     </label>
     <label for="phone" class="grid-half">
       Phone:
-      <input type="tel" id="phone">
+      <input type="tel" id="phone" ng-model="contact.message.phone">
     </label>
     <label for="body" class="grid-full">
       Message: <span>*Required</span>
-      <textarea id="body" required></textarea>
+      <textarea id="body" required ng-model="contact.message.body"></textarea>
     </label>
     <button class="grid-full tr mb2x mt2x">Send Message <i class="icon-email"></i></button>
   </form>
-  <div id="message-confirm" class="success-message grid-full hide"></div>
-  <form id="subscribe-form" class="grid-full">
+  <div  ng-show="contact.contactForm.successMessage" class="success-message grid-full">{{ contact.contactForm.successMessage }}</div>
+  <form name="subscribeForm" class="grid-full" ng-submit="contact.subscribe(subscribeForm.$valid)" novalidate>
     <h1>Join My Email List!</h1>
     <label for="sub-name" class="grid-full">
       Name: <span>*Required</span>
-      <input type="text" id="sub-name" required>
+      <input type="text" id="sub-name" required ng-model="contact.subscriber.name">
     </label>
     <label for="sub-email" class="grid-full">
       Email: <span>*Required</span>
-      <input type="email" id="sub-email" required>
+      <input type="email" id="sub-email" required ng-model="contact.subscriber.email">
     </label>
     <button class="grid-full tr mb2x mt2x">Submit</button>
   </form>
-  <div id="subscribe-confirm" class="success-message grid-full hide"></div>
+  <div ng-show="contact.subscriberForm.successMessage" class="success-message grid-full">{{ contact.subscriberForm.successMessage }}</div>
 </div>

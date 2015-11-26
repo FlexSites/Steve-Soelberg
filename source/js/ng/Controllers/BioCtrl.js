@@ -7,11 +7,15 @@ angular.module('SteveSoelberg')
         controller: 'BioCtrl',
         controllerAs: 'bio',
         resolve: {
-          entertainer: ['FlexEntertainer', function(Entertainer) {
+          entertainer: ['FlexEntertainer', '$sce', function(Entertainer, $sce) {
             return Entertainer
               .query()
               .$promise
               .then(function(entertainers) { return entertainers[0] || {}; })
+              .then(function(entertainer) {
+                entertainer.description = $sce.trustAsHtml(entertainer.description);
+                return entertainer;
+              })
           }],
         },
       })

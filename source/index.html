@@ -36,27 +36,24 @@
       <a class="nav_toggle icon-menu" id="nav_toggle"></a>
       <ul class="nav_menu">
         <li><a href="#!/">Home</a></li>
-        <li><a href="#!/videos" ui-sref="videos">Media</a></li>
+        <li><a href="#!/media" ui-sref="media">Media</a></li>
         <li><a href="#!/bio" ui-sref="bio">Bio</a></li>
         <!-- <li><a href="#!/calendar" ui-sref="calendar">Calendar</a></li> -->
-        <li><a href="#!/events" ui-sref="events">Upcoming Events</a></li>
+        <!-- <li><a href="#!/events" ui-sref="events">Upcoming Events</a></li> -->
         <li><a href="#!/contact" ui-sref="contact">Contact</a></li>
       </ul>
     </nav>
 
     <section class="body-content" ui-view></section>
 
-    [[#page.media]]
-    <style>html{background-image: url([[page.media.0.src]])}</style>
-    [[/page.media]]
-    [[^page.media]]
+
     <style>html{background-image: url(/media/large/home.jpg)}</style>
-    [[/page.media]]
 
     <!-- build:js /vendor/js/angular.js -->
     <script src="/vendor/angular/angular.min.js"></script>
     <script src="/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/vendor/angular-resource/angular-resource.min.js"></script>
+    <script src="/vendor/angular-sanitize/angular-sanitize.min.js"></script>
     <!-- endbuild -->
     <script src="/vendor/flexsites-angular-sdk/sdk.js"></script>
 
@@ -65,6 +62,7 @@
     <script src="/js/ng/Router.js"></script>
     <script src="/js/ng/Controllers/MainCtrl.js"></script>
     <script src="/js/ng/Controllers/HomeCtrl.js"></script>
+    <script src="/js/ng/Controllers/MediaCtrl.js"></script>
     <script src="/js/ng/Controllers/BioCtrl.js"></script>
     <script src="/js/ng/Controllers/ContactCtrl.js"></script>
     <script src="/js/ng/Controllers/EventCtrl.js"></script>
