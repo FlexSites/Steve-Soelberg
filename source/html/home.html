@@ -1,14 +1,10 @@
-<!--[flex]>{"testimonials": ""}<![flex]-->
-
 <div class="testimonials">
-  [[#testimonials]]
-	<div class="testimonial">
+	<div class="testimonial" ng-repeat="testimonial in home.testimonials" ng-hide="$index != home.activeTestimonial">
 		<blockquote>
-			[[quote]]
+			{{testimonial.quote}}
 		</blockquote>
-		<cite>  -[[author]], <b>[[company]]</b></cite>
+		<cite>  -{{testimonial.author}}, <b>{{testimonial.company}}</b></cite>
 	</div>
-  [[/testimonials]]
 	<div class="tc grid-full">
 		<a href="/contact" class="btn">Book Steve for your event!</a>
 	</div>

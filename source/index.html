@@ -1,8 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="SteveSoelberg" ng-controller="MainCtrl as main">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="fragment" content="!" />
+    <meta property="og:title" content="{{ main.title }}">
+    <meta property="og:site_name" content="{{ main.title }}">
+    <meta property="og:url" content="{{ main.url }}">
+    <meta property="og:image" content="{{ main.shareImage }}">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="{{ main.description }}">
+    <meta name="description" content="{{ main.description }}">
+    <meta name="keywords" content="{{ main.keywords }}">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, user-scalable=0">
+    <base href="/">
+    <title>{{ main.title }}</title>
 
-    [[>meta]]
+    <!-- ENVIRONMENT: [[site.env]] -->
+    <link rel="apple-touch-icon" href="/img/mobile/icon.png">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="image_src" href="/img/logo.jpg">
+
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
   </head>
@@ -15,18 +35,16 @@
       <a href="/" class="nav_logo"></a>
       <a class="nav_toggle icon-menu" id="nav_toggle"></a>
       <ul class="nav_menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/videos">Media</a></li>
-        <li><a href="/bio">Bio</a></li>
-        <!-- <li><a href="/calendar">Calendar</a></li> -->
-        <!-- <li><a href="/wiseguys">Next Event</a></li> -->
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="#!/">Home</a></li>
+        <li><a href="#!/videos" ui-sref="videos">Media</a></li>
+        <li><a href="#!/bio" ui-sref="bio">Bio</a></li>
+        <!-- <li><a href="#!/calendar" ui-sref="calendar">Calendar</a></li> -->
+        <li><a href="#!/events" ui-sref="events">Upcoming Events</a></li>
+        <li><a href="#!/contact" ui-sref="contact">Contact</a></li>
       </ul>
     </nav>
 
-    <section class="body-content">
-      [[>content]]
-    </section>
+    <section class="body-content" ui-view></section>
 
     [[#page.media]]
     <style>html{background-image: url([[page.media.0.src]])}</style>
@@ -35,10 +53,22 @@
     <style>html{background-image: url(/media/large/home.jpg)}</style>
     [[/page.media]]
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/form.js"></script>
 
-    [[>analytics]]
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/vendor/angular-resource/angular-resource.min.js"></script>
+    <script src="/vendor/flexsites-angular-sdk/sdk.js"></script>
+
+    <script src="/js/ng/App.js"></script>
+    <script src="/js/ng/Router.js"></script>
+    <script src="/js/ng/Controllers/MainCtrl.js"></script>
+    <script src="/js/ng/Controllers/HomeCtrl.js"></script>
+    <script src="/js/ng/Controllers/BioCtrl.js"></script>
+    <script src="/js/ng/Controllers/ContactCtrl.js"></script>
+    <script src="/js/ng/Controllers/EventCtrl.js"></script>
+
+
+    <!-- TODO: Add back analytics -->
+
   </body>
 </html>
