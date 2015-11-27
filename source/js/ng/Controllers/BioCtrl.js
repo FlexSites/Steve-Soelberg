@@ -6,6 +6,10 @@ angular.module('SteveSoelberg')
         templateUrl: '/html/bio.html',
         controller: 'BioCtrl',
         controllerAs: 'bio',
+        data: {
+          title: 'About Steve Soelberg',
+          description: 'Extremely funny comedian and overall nice person Steve Soelberg brings an observational, story telling style of comedy which has repeatedly left his regularly sold out audiences in stitches.',
+        },
         resolve: {
           entertainer: ['FlexEntertainer', '$sce', function(Entertainer, $sce) {
             return Entertainer

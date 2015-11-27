@@ -1,8 +1,13 @@
 angular.module('SteveSoelberg')
-  .controller('MainCtrl', [ function (){
-    document.title = 'Official Website Of Steve Soelberg';
-    console.log('Ran main ctrl');
-    document.title = this.title = 'Crazy crap and stuff';
-    this.shareImage = 'http://localhost:8080/img/shareImage.jpg';
-  }]);
+  .run(['$rootScope', function($rootScope) {
 
+  }])
+  .controller('MainCtrl', ['$rootScope', function ($rootScope){
+    var self = this;
+    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+      if (!toState.data) toState.data = {};
+      self.title = document.title = toState.data.title || 'Official Website Of Steve Soelberg';
+      self.shareImage = toState.data.shareImage || '/img/shareImage.jpg';
+      self.description = toState.data.description || 'Default description';
+    });
+  }]);

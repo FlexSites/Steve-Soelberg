@@ -6,6 +6,10 @@ angular.module('SteveSoelberg')
         templateUrl: '/html/home.html',
         controller: 'HomeCtrl',
         controllerAs: 'home',
+        data: {
+          title: 'Official website of comedian Steve Soelberg',
+          description: 'Steve Soelberg is an incredibly talented stand-up comedian.',
+        },
         resolve: {
           testimonials: ['FlexTestimonial', function(Testimonial) {
             console.log('running stuff');
